@@ -1,0 +1,73 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Button from '../../components/Button.astro';
+import CaseCard from '../../components/CaseCard.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import { getCollection, render } from 'astro:content';
+import { site, services, industries } from '../../data/site';
+
+export async function getStaticPaths() {
+  const cases = await getCollection('cases');
+  return cases.map((c) => ({ params: { slug: c.id }, props: { entry: c } }));
+}
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+const ind = industries.find((i) => i.href === `/otrasli/${d.industry}/`);
+const used = services.filter((s) => d.services.some((x) => s.href === `/uslugi/${x}/`));
+const related = (await getCollection('cases', (c) => c.id !== entry.id && c.data.industry === d.industry)).slice(0, 3);
+const ld = {
+  '@context': 'https://schema.org', '@type': 'Article',
+  headline: d.title, description: d.description,
+  author: { '@id': `${site.url}/#org` }, publisher: { '@id': `${site.url}/#org` },
+  about: d.client, mainEntityOfPage: new URL(`/keisy/${entry.id}/`, site.url).href,
+};
+---
+<Base title={d.seoTitle} description={d.description} noindex={d.draft} jsonLd={[ld]}>
+  <section class="section stack">
+    <Breadcrumbs items={[{ href: '/keisy/', title: 'Кейсы' }, { href: `/keisy/${entry.id}/`, title: d.client }]} />
+    <div class="split">
+      <div class="stack">
+        {d.logo && <img src={d.logo} alt={`Логотип: ${d.client}`} width="160" height="120" style="width:160px;height:120px;object-fit:contain;object-position:left" />}
+        <h1 class="h1" style="font-size:clamp(30px,3.4vw,48px);line-height:1">{d.title}</h1>
+        <div class="pills">
+          <span class="pill">{d.city}</span>
+          <span class="pill">Срок: {d.period}</span>
+          {ind && <a class="pill" href={ind.href}>{ind.title}</a>}
+          {used.map((s) => <a class="pill pill--dot" href={s.href}>{s.title}</a>)}
+        </div>
+      </div>
+      <div class="stat section--coral" style="justify-content:flex-end">
+        <span class="stat__value" style="font-size:clamp(72px,9vw,140px)">{d.metric}</span>
+        <span class="stat__label" style="font-size:20px">{d.metricLabel}</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="grid grid-3" aria-label="Результаты">
+    {d.results.map((r, i) => <div class:list={['stat', i === 0 ? 'card--ink' : 'card']}><span class:list={['stat__value', r.value.includes('[') && 'todo']} style={r.value.includes('[') ? 'font-size:28px;align-self:flex-start' : undefined}>{r.value.includes('[') ? 'данные уточняются' : r.value}</span><span class="stat__label">{r.label}</span></div>)}
+  </section>
+
+  <article class="section">
+    <div class="prose"><Content /></div>
+  </article>
+
+  <section class="section section--mist split">
+    <div class="stack"><h2 class="h2">Нужен такой же результат?</h2><p class="lead">Разберём ваш проект и покажем, какой эффект реально получить и за какой срок.</p></div>
+    <div class="actions" style="align-self:end">
+      <Button href="#zayavka">Обсудить проект</Button>
+      {used[0] && <Button href={used[0].href} variant="ghost">{used[0].title}</Button>}
+    </div>
+  </section>
+
+  {related.length > 0 && (
+    <section class="section section--ink stack">
+      <h2 class="h2">Похожие кейсы</h2>
+      <div class="grid grid-3">
+        {related.map((c) => <CaseCard href={`/keisy/${c.id}/`} logo={c.data.logo} metric={c.data.metric} title={c.data.client} desc={c.data.summary} tags={[c.data.city]} />)}
+      </div>
+    </section>
+  )}
+  <LeadForm topic={`Кейс ${d.client}`} />
+</Base>

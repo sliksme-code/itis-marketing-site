@@ -1,0 +1,143 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Button from '../../components/Button.astro';
+import CaseCard from '../../components/CaseCard.astro';
+import Stages from '../../components/Stages.astro';
+import Faq from '../../components/Faq.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import { getCollection } from 'astro:content';
+import { site } from '../../data/site';
+
+const cases = (await getCollection('cases', (c) => c.data.services.includes('seo-prodvizhenie'))).sort((a, b) => a.data.order - b.data.order);
+
+const faq = [
+  { q: 'Через сколько придёт результат от SEO?', a: 'Первые изменения в позициях и трафике видны через 2–3 месяца, устойчивый рост заявок — через 4–6 месяцев. Для молодого сайта и конкурентной ниши срок больше. Точный прогноз даём после аудита: он зависит от состояния сайта, конкурентов и бюджета на контент и ссылки.' },
+  { q: 'Вы гарантируете ТОП-1?', a: 'Нет. Поисковые системы не продают места в выдаче, поэтому гарантию ТОП-1 честно дать нельзя. Мы фиксируем в договоре состав работ, сроки и KPI по трафику и заявкам и отчитываемся по ним каждый месяц.' },
+  { q: 'Чем SEO выгоднее контекстной рекламы?', a: 'Контекст даёт заявки сразу, но останавливается вместе с бюджетом. SEO разгоняется дольше, зато заявка из поиска со временем обходится дешевле, а трафик остаётся после завершения активных работ. Лучший результат — связка: контекст на старте, SEO на долгую дистанцию.' },
+  { q: 'Продвигаете в Яндексе и Google?', a: 'Да, в обоих. В России основной трафик даёт Яндекс, поэтому учитываем его коммерческие и поведенческие факторы, Яндекс Бизнес и Карты. Для зарубежных рынков работаем с Google, а в Корее — с Naver.' },
+  { q: 'Можно продвигать сеть в нескольких городах?', a: 'Да, это наша сильная сторона: региональная структура сайта, страницы филиалов, карточки на картах и гео-зависимая семантика. Сеть клиник «Ибис» мы вывели в ТОП в 12 городах.' },
+  { q: 'Что нужно от нас для старта?', a: 'Доступы к сайту, Яндекс Метрике и Вебмастеру, список приоритетных услуг и регионов, контакт для согласования текстов. Если сайт нужно доработать технически — сделаем сами или передадим ТЗ вашему разработчику.' },
+  { q: 'Сколько стоит SEO-продвижение?', a: 'Абонемент — от 35 000 ₽ в месяц без НДС, SEO-аудит — от 150 000 ₽. Стоимость зависит от размера сайта, количества регионов и конкуренции. Ссылочный бюджет, если он нужен, согласуем отдельно.' },
+];
+
+const service = {
+  '@context': 'https://schema.org', '@type': 'Service',
+  name: 'SEO-продвижение сайтов',
+  serviceType: 'SEO-продвижение',
+  provider: { '@id': `${site.url}/#org` },
+  areaServed: 'RU',
+  offers: { '@type': 'Offer', priceCurrency: 'RUB', price: '35000', description: 'Абонемент от 35 000 ₽ в месяц без НДС' },
+};
+---
+<Base
+  title="SEO-продвижение сайтов в Яндексе и Google — от 35 000 ₽/мес | itis маркетинг"
+  description="SEO-продвижение под заявки: аудит, семантика, контент, коммерческие факторы и гео-SEO для сетей. +70% поискового трафика у клиники «Корд» за 10 месяцев. Москва, Казань, вся Россия."
+  jsonLd={[service]}
+>
+  <section class="section stack">
+    <Breadcrumbs items={[{ href: '/uslugi/', title: 'Услуги' }, { href: '/uslugi/seo-prodvizhenie/', title: 'SEO-продвижение' }]} />
+    <div class="split">
+      <div class="stack">
+        <h1 class="h1 h1--accent">SEO-продвижение сайтов, которое приводит заявки</h1>
+        <p class="lead">Выводим сайт в ТОП Яндекса и Google по запросам, с которых покупают, — и считаем результат в заявках и стоимости клиента, а не в позициях.</p>
+        <div class="actions">
+          <Button href="#zayavka">Получить SEO-разбор</Button>
+          <span class="pill pill--dot">от 35 000 ₽/мес</span>
+        </div>
+      </div>
+      <div class="grid grid-2">
+        <div class="stat section--coral"><span class="stat__value">+70%</span><span class="stat__label">поискового трафика за 10 месяцев — клиника «Корд»</span></div>
+        <div class="stat card--ink"><span class="stat__value">12</span><span class="stat__label">городов-миллионников в ТОП — сеть клиник «Ибис»</span></div>
+        <div class="stat card--mist" style="grid-column:1/-1;min-height:auto"><span class="stat__label">10+ лет в SEO · медицина, авто, промышленность, международные бренды · Яндекс, Google, Naver</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink stack">
+    <div class="stack-sm"><span class="eyebrow">для кого</span><h2 class="h2">Когда SEO нужно вам</h2></div>
+    <div class="grid grid-4">
+      <div class="card card--ink2"><h3 class="h3">Заявки дорожают</h3><p>Контекст съедает бюджет, а стоимость заявки растёт с каждым кварталом.</p></div>
+      <div class="card card--ink2"><h3 class="h3">Сайт не виден в поиске</h3><p>Конкуренты в ТОПе по вашим услугам, а у вас — трафик только по названию компании.</p></div>
+      <div class="card card--ink2"><h3 class="h3">Сеть в нескольких городах</h3><p>Нужно продвигать филиалы в каждом регионе, а не один главный сайт.</p></div>
+      <div class="card card--ink2"><h3 class="h3">Выход на новые рынки</h3><p>Бренду нужен поисковый трафик в США, Европе, Азии или ОАЭ.</p></div>
+    </div>
+  </section>
+
+  <section class="section stack">
+    <div class="stack-sm"><span class="eyebrow">что входит</span><h2 class="h2">Работы по SEO</h2><p class="lead">Состав работ фиксируем в плане на каждый месяц, отчёт — до 5 числа.</p></div>
+    <div class="grid grid-4">
+      <div class="card card--mist"><span class="card__num">01</span><h3 class="h3">Технический аудит</h3><p>Скорость, мобильная версия, индексация, дубли, редиректы, robots и sitemap — список правок с приоритетами.</p></div>
+      <div class="card card--mist"><span class="card__num">02</span><h3 class="h3">Семантика и структура</h3><p>Запросы, по которым покупают, кластеры и посадочные страницы под каждую услугу и город.</p></div>
+      <div class="card card--mist"><span class="card__num">03</span><h3 class="h3">Контент</h3><p>ТЗ и тексты для услуг и статей: экспертно, по запросам, с проверкой на соответствие нише.</p></div>
+      <div class="card card--mist"><span class="card__num">04</span><h3 class="h3">Коммерческие факторы</h3><p>Цены, отзывы, контакты, формы, доверие — то, что Яндекс оценивает у коммерческих сайтов.</p></div>
+      <div class="card card--mist"><span class="card__num">05</span><h3 class="h3">Гео-SEO и карты</h3><p>Яндекс Бизнес, 2ГИС, Google Maps, страницы филиалов и работа с отзывами.</p></div>
+      <div class="card card--mist"><span class="card__num">06</span><h3 class="h3">Ссылки и упоминания</h3><p>Площадки по тематике с проверкой качества; бюджет и список доноров согласуем с вами.</p></div>
+      <div class="card card--mist"><span class="card__num">07</span><h3 class="h3">Аналитика</h3><p>Метрика с целями, позиции, трафик и заявки из поиска — в одном отчёте.</p></div>
+      <div class="card card--ink"><span class="card__num">08</span><h3 class="h3">ИИ-ускорение</h3><p>ИИ-агенты собирают семантику и черновики ТЗ, специалист проверяет и внедряет.</p></div>
+    </div>
+  </section>
+
+  <section class="section section--mist split">
+    <div class="stack">
+      <span class="eyebrow">ценность для бизнеса</span>
+      <h2 class="h2">Что вы получаете в деньгах</h2>
+    </div>
+    <div class="stack-sm prose">
+      <p><b>Дешевле заявка на дистанции.</b> Поисковый трафик не оплачивается за каждый клик: когда сайт закрепился в ТОПе, стоимость заявки из поиска, как правило, ниже, чем из рекламы.</p>
+      <p><b>Актив, который остаётся.</b> Страницы, контент и позиции продолжают работать и после активной фазы — в отличие от рекламы, которая останавливается вместе с бюджетом.</p>
+      <p><b>Прозрачность.</b> В отчёте — не «позиции выросли», а сколько заявок и звонков пришло из поиска и сколько стоил каждый.</p>
+    </div>
+  </section>
+
+  <section class="section stack">
+    <div class="stack-sm"><span class="eyebrow">форматы и цены</span><h2 class="h2">Сколько стоит SEO</h2><p class="lead">Цены без НДС 5%. Постоянным клиентам — скидка 10% на второй заказ и 15% с третьего.</p></div>
+    <div class="grid grid-4">
+      <div class="price"><span class="price__name">SEO-аудит</span><span class="price__value">от 150 000 ₽</span><ul><li>Технический аудит</li><li>Контент и мета-теги</li><li>Ссылочный профиль</li><li>Конкуренты и семантика</li><li>План работ с приоритетами</li></ul></div>
+      <div class="price"><span class="price__name">SEO Старт</span><span class="price__value">от 35 000 ₽ <small>/мес</small></span><ul><li>Сайт до 50 страниц</li><li>1 регион</li><li>Техническая гигиена</li><li>Оптимизация ключевых услуг</li><li>Ежемесячный отчёт</li></ul></div>
+      <div class="price price--hot"><span class="price__name">SEO Рост</span><span class="price__value">от 90 000 ₽ <small>/мес</small></span><ul><li>Всё из «Старт»</li><li>Контент-план и тексты</li><li>Гео-SEO и карты</li><li>Ссылки (бюджет отдельно)</li><li>Аналитика заявок</li></ul></div>
+      <div class="price"><span class="price__name">Мультирегион и международное</span><span class="price__value">по расчёту</span><ul><li>Сети в десятках городов</li><li>Зарубежные рынки, hreflang</li><li>Google, Yahoo! Japan, Naver</li><li>Региональные KPI</li></ul></div>
+    </div>
+  </section>
+
+  <Stages
+    title="Первые 3 месяца"
+    lead="Что происходит после подписания договора."
+    items={[
+      { title: 'Аудит и доступы', points: ['Метрика, Вебмастер, цели', 'Технический аудит', 'Срочные исправления'], time: 'Недели 1–2' },
+      { title: 'Семантика и структура', points: ['Сбор и кластеризация запросов', 'Карта посадочных страниц', 'ТЗ на новые страницы'], time: 'Недели 3–4' },
+      { title: 'Внедрение', points: ['Мета-теги и тексты услуг', 'Коммерческие факторы', 'Карты и отзывы'], time: 'Месяц 2' },
+      { title: 'Рост', points: ['Контент и ссылки по плану', 'Анализ запросов на позициях 5–20', 'Отчёт: трафик и заявки'], time: 'Месяц 3 и далее' },
+    ]}
+  />
+
+  <section class="section section--ink stack">
+    <h2 class="giant">кейсы</h2>
+    <div class="grid grid-3">
+      {cases.map((c) => <CaseCard href={`/keisy/${c.id}/`} logo={c.data.logo} metric={c.data.metric} title={c.data.client} desc={c.data.summary} tags={[c.data.city]} />)}
+      <CaseCard metric="5 регионов" title="Международный бренд одежды" desc="SEO в США, Японии, Южной Корее, ЕС и ОАЭ: Google, Yahoo! Japan и Naver, региональные KPI и линкбилдинг." tags={['Гоша Рубчинский']} />
+    </div>
+  </section>
+
+  <section class="section split">
+    <div class="stack"><span class="eyebrow">говорим прямо</span><h2 class="h2">Чего мы не обещаем</h2></div>
+    <ul class="checks crosses">
+      <li>ТОП-1 по всем запросам за месяц — так не бывает ни у кого.</li>
+      <li>Рост без доступа к сайту и без согласования правок: если изменения не внедряются, результата не будет.</li>
+      <li>Отчёт «позиции выросли» без заявок — мы считаем обращения из поиска.</li>
+      <li>Одинаковый срок для всех: новый сайт в конкурентной нише растёт дольше, и мы скажем об этом до старта.</li>
+    </ul>
+  </section>
+
+  <section class="section section--mist stack">
+    <div class="stack-sm"><span class="eyebrow">связанные решения</span><h2 class="h2">SEO работает сильнее в связке</h2></div>
+    <div class="grid grid-3">
+      <a class="card" href="/uslugi/kontekstnaya-reklama/"><h3 class="h3">Контекстная реклама</h3><p>Заявки с первой недели, пока растёт SEO.</p><span class="card__more">Подробнее →</span></a>
+      <a class="card" href="/uslugi/razrabotka-sajtov/"><h3 class="h3">Сайт под SEO</h3><p>Если текущий сайт тормозит рост — делаем новый с правильной структурой.</p><span class="card__more">Подробнее →</span></a>
+      <a class="card" href="/otrasli/medicina/"><h3 class="h3">SEO для клиник</h3><p>Отраслевое решение для медицины: сети, филиалы, врачи, карты.</p><span class="card__more">Подробнее →</span></a>
+    </div>
+  </section>
+
+  <Faq items={faq} title="Вопросы о SEO-продвижении" />
+  <LeadForm topic="SEO" title="SEO-разбор вашего сайта бесплатно" lead="Посмотрим сайт, конкурентов и спрос — и скажем, сколько заявок реально получить из поиска. Ответим в течение часа в рабочее время." />
+</Base>

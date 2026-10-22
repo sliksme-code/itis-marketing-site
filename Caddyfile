@@ -1,0 +1,63 @@
+# Веб-сервер сайта. Отдаёт статику из dist/, делает 301-редиректы со старых
+# адресов Tilda и 410 для удалённых страниц — так поисковики переносят вес.
+{
+	auto_https off
+	admin off
+}
+
+:80 {
+	root * /srv
+	encode zstd gzip
+
+	# --- канонический адрес: без www ---
+	@www host www.itis.marketing
+	redir @www https://itis.marketing{uri} 301
+
+	# --- удалено навсегда: 410 Gone (быстрее выпадает из индекса, чем 404) ---
+	@gone path /cottage /cottage/ /test /test/ /template /template/ /case-template /case-template/ /service-template /service-template/ /page32658522.html
+	respond @gone "Страница удалена" 410
+
+	# --- 301 со старых адресов ---
+	redir /marketing-med             /otrasli/medicina/ 301
+	redir /marketing-med/            /otrasli/medicina/ 301
+	redir /ai-auto                   /otrasli/avtobiznes/ 301
+	redir /ai-auto/                  /otrasli/avtobiznes/ 301
+	redir /page80566876.html         /otrasli/avtobiznes/ 301
+	redir /marketing-strategia       /uslugi/marketingovaya-strategiya/ 301
+	redir /marketing-strategia/      /uslugi/marketingovaya-strategiya/ 301
+	redir /page67428513.html         / 301
+	redir /page67441865.html         / 301
+	redir /registration              /kontakty/ 301
+	redir /case                      /keisy/ 301
+	redir /bazaznaniy                /blog/ 301
+	# Статьи базы знаний: пока на /blog/, после переноса — по одной на новый адрес
+	redir /bazaznaniy/*              /blog/ 301
+	redir /courses/*                 /blog/ 301
+
+	# --- адреса без слэша на конце → со слэшем (единый формат URL) ---
+	@noslash {
+		not path */ *.* /
+		file {path}/index.html
+	}
+	redir @noslash {path}/ 301
+
+	# --- кэш: ассеты Astro с хешем — год, HTML — без кэша ---
+	@assets path /_astro/* /img/*
+	header @assets Cache-Control "public, max-age=31536000, immutable"
+	@html path */ *.html
+	header @html Cache-Control "public, max-age=0, must-revalidate"
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		-Server
+	}
+
+	try_files {path} {path}/index.html
+	file_server
+
+	handle_errors {
+		@404 expression {err.status_code} == 404
+		rewrite @404 /404.html
+		file_server
+	}
+}

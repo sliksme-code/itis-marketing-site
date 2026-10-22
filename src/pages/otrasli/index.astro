@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import { industries } from '../../data/site';
+---
+<Base title="Отраслевые решения: маркетинг для клиник, автобизнеса, B2B, недвижимости | itis" description="Готовые маркетинговые решения для отраслей: медицина и клиники, автобизнес, промышленность и B2B, недвижимость, финансы, бренды и e-commerce. Кейсы и связки каналов под нишу.">
+  <section class="section stack">
+    <Breadcrumbs items={[{ href: '/otrasli/', title: 'Отрасли' }]} />
+    <h1 class="h1">Отраслевые решения</h1>
+    <p class="lead">В каждой нише — свои запросы, ограничения рекламы и путь клиента. Мы приходим с готовой связкой каналов и кейсами из вашей отрасли.</p>
+  </section>
+  <section class="grid grid-3">
+    {industries.map((s, i) => <a class:list={['card', i === 0 ? 'card--ink' : '']} href={s.href} style="min-height:200px"><h2 class="h3">{s.title}</h2><p>{s.text}</p><span class="card__more">Подробнее →</span></a>)}
+  </section>
+  <LeadForm topic="Отрасли" />
+</Base>

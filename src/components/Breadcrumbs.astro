@@ -1,0 +1,16 @@
+---
+// Хлебные крошки + разметка BreadcrumbList для Яндекса и Google.
+import { site } from '../data/site';
+interface Props { items: { href: string; title: string }[] }
+const items = [{ href: '/', title: 'Главная' }, ...Astro.props.items];
+const ld = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: items.map((it, i) => ({ '@type': 'ListItem', position: i + 1, name: it.title, item: new URL(it.href, site.url).href })),
+};
+---
+<nav aria-label="Навигационная цепочка">
+  <ol class="crumbs">
+    {items.map((it, i) => i < items.length - 1 ? <li><a href={it.href}>{it.title}</a></li> : <li aria-current="page">{it.title}</li>)}
+  </ol>
+</nav>
+<script type="application/ld+json" set:html={JSON.stringify(ld)} />

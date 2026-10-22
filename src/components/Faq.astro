@@ -1,0 +1,16 @@
+---
+// Вопросы-ответы: текст в HTML (раскрывается без JS) + разметка FAQPage.
+interface Props { items: { q: string; a: string }[]; title?: string }
+const { items, title = 'Частые вопросы' } = Astro.props;
+const ld = {
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: items.map((it) => ({ '@type': 'Question', name: it.q, acceptedAnswer: { '@type': 'Answer', text: it.a } })),
+};
+---
+<section class="section stack" id="faq">
+  <h2 class="h2">{title}</h2>
+  <div class="faq">
+    {items.map((it, i) => <details open={i === 0}><summary>{it.q}</summary><p>{it.a}</p></details>)}
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+</section>

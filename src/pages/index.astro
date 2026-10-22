@@ -1,0 +1,145 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import CaseCard from '../components/CaseCard.astro';
+import Stages from '../components/Stages.astro';
+import Faq from '../components/Faq.astro';
+import LeadForm from '../components/LeadForm.astro';
+import { getCollection } from 'astro:content';
+import { site, services, industries, flagship, clients } from '../data/site';
+
+const cases = (await getCollection('cases')).sort((a, b) => a.data.order - b.data.order).slice(0, 3);
+
+const faq = [
+  { q: 'С какими компаниями вы работаете?', a: 'С компаниями, которым нужен системный поток клиентов: сети клиник, автобизнес, производство и B2B, недвижимость, финансы, бренды и интернет-магазины. Минимальный бюджет — от 150 000 ₽ за разовый проект или от 25 000 ₽ в месяц на абонементе.' },
+  { q: 'Чем вы отличаетесь от других агентств?', a: 'Мы считаем заявки и деньги, а не позиции и клики. У нас собственная ИИ-платформа Sellerator: ИИ-агенты берут на себя рутину и контроль звонков, а маркетолог отвечает за стратегию и результат.' },
+  { q: 'Сколько стоят услуги?', a: 'SEO и контекстная реклама — от 35 000 ₽ в месяц, комплексный маркетинг под ключ — от 90 000 ₽ в месяц, сайты — от 200 000 ₽. Точную смету готовим за 1 рабочий день после разбора задачи. Цены указаны без НДС 5%.' },
+  { q: 'Как быстро будет результат?', a: 'Контекстная реклама даёт заявки в первые 1–2 недели. SEO — первые изменения через 2–3 месяца, устойчивый рост — через 4–6 месяцев. Сроки по вашему проекту называем на разборе.' },
+  { q: 'Работаете только в Москве и Казани?', a: 'Офисы в Москве и Казани, клиенты — по всей России и за рубежом. Продвигаем сети в десятках городов и бренды на зарубежных рынках.' },
+  { q: 'Как устроена отчётность?', a: 'Еженедельный статус и ежемесячный отчёт до 5 числа: что сделано, цифры периода против плана, что работает и что выключаем, план на следующий месяц.' },
+];
+---
+<Base
+  title="Маркетинговое агентство itis — SEO, контекст, сайты и ИИ-маркетологи | Москва, Казань"
+  description="Маркетинговое агентство полного цикла: SEO, контекстная реклама, сайты, исследования и ИИ-отдел маркетинга. 10+ лет, 90+ проектов. Рассчитаем проект за 1 рабочий день."
+>
+  <section class="section hero">
+    <div class="hero__main">
+      <div class="stack">
+        <span class="pill pill--dot">10+ лет · 90+ проектов · Москва и Казань</span>
+        <h1 class="h1">Маркетинговое агентство, которое отвечает за&nbsp;заявки, а&nbsp;не&nbsp;за&nbsp;клики</h1>
+        <p class="lead">SEO, контекстная реклама, сайты и исследования — вручную там, где нужна экспертиза, и с ИИ-агентами там, где важны скорость и контроль.</p>
+      </div>
+      <div class="actions">
+        <Button href="#zayavka">Рассчитать проект за 1 день</Button>
+        <Button href="/keisy/" variant="ghost">Смотреть кейсы</Button>
+      </div>
+    </div>
+    <img class="hero__img" src="/img/clinic.webp" alt="Клиника — один из отраслевых проектов агентства" width="740" height="1110" fetchpriority="high" />
+  </section>
+
+  <section class="grid grid-4" aria-label="Агентство в цифрах">
+    <div class="stat section--coral"><span class="stat__value">10+</span><span class="stat__label">лет растим продажи клиентов через маркетинг</span></div>
+    <div class="stat card--ink"><span class="stat__value">90+</span><span class="stat__label">проектов клиентов с 2015 года</span></div>
+    <div class="stat card"><span class="stat__value">+70%</span><span class="stat__label">поискового трафика за 10 месяцев — клиника «Корд»</span></div>
+    <div class="stat card"><span class="stat__value">7 000</span><span class="stat__label">звонков в месяц оценивает ИИ в сети клиник «Ариадна»</span></div>
+  </section>
+
+  <section class="section section--ink stack">
+    <div class="stack-sm">
+      <span class="eyebrow">с чего начать</span>
+      <h2 class="h2">Три способа работать с нами</h2>
+    </div>
+    <div class="grid grid-3">
+      <a class="card card--coral" href="/kompleksnyj-marketing/">
+        <span class="card__num">01 · под ключ</span>
+        <h3 class="h3">Комплексный маркетинг</h3>
+        <p>Нужен весь маркетинг сразу. Работаем как ваш внешний отдел: стратегия, каналы, аналитика, один ответственный.</p>
+        <span class="card__price">от 90 000 ₽/мес</span>
+      </a>
+      <a class="card card--ink2" href="/uslugi/">
+        <span class="card__num">02 · услуги</span>
+        <h3 class="h3">Отдельная услуга</h3>
+        <p>Понятна задача: SEO, контекст, сайт или исследование. Берём канал целиком и отвечаем за его результат.</p>
+        <span class="card__more">Все услуги →</span>
+      </a>
+      <a class="card card--ink2" href="/otrasli/">
+        <span class="card__num">03 · отрасли</span>
+        <h3 class="h3">Решение для вашей отрасли</h3>
+        <p>Медицина, авто, промышленность, недвижимость, финансы, бренды — готовые связки каналов и кейсы в вашей нише.</p>
+        <span class="card__more">Все отрасли →</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section split">
+    <div class="stack">
+      <span class="eyebrow">флагман 2027</span>
+      <h2 class="h2">ИИ-отдел маркетинга</h2>
+      <p class="lead">Маркетолог агентства и ИИ-агенты ведут ваши каналы как штатный отдел — быстрее и дешевле найма.</p>
+      <div class="actions"><Button href={flagship[1].href}>Как это работает</Button></div>
+    </div>
+    <ul class="grid grid-2" style="list-style:none;margin:0;padding:0">
+      <li class="card card--mist"><h3 class="h3">ИИ-контекстолог</h3><p>Ежедневно правит ставки, минус-слова и объявления по данным о заявках.</p></li>
+      <li class="card card--mist"><h3 class="h3">ИИ-SEO и контент</h3><p>Семантика, ТЗ и тексты под ключевые услуги — с проверкой маркетологом.</p></li>
+      <li class="card card--mist"><h3 class="h3">ИИ-контроль звонков</h3><p>Оценивает каждый звонок администраторов и находит потерянные заявки.</p></li>
+      <li class="card card--ink"><h3 class="h3">2 300 заявок в месяц</h3><p>обрабатывают ИИ-агенты в автопрокате KozaPark и сами заносят их в CRM.</p></li>
+    </ul>
+  </section>
+
+  <section class="section stack">
+    <div class="stack-sm">
+      <span class="eyebrow">услуги</span>
+      <h2 class="h2">Флагманские услуги</h2>
+    </div>
+    <div class="grid grid-4">
+      {services.slice(0, 4).map((s, i) => (
+        <a class:list={['card', i === 0 ? 'card--ink' : 'card--mist']} href={s.href}>
+          <h3 class="h3">{s.title}</h3>
+          <p>{s.text}</p>
+          <span class="card__price">{s.price}</span>
+        </a>
+      ))}
+    </div>
+    <p class="muted"><a href="/uslugi/">Все услуги</a>: стратегия, ИИ-аналитика звонков, техподдержка сайтов, репутация на картах.</p>
+  </section>
+
+  <section class="section section--ink stack">
+    <h2 class="giant" aria-label="Отраслевые решения">отрасли</h2>
+    <div class="grid grid-3">
+      {industries.map((it) => (
+        <a class="card card--ink2" href={it.href}><h3 class="h3">{it.title}</h3><p>{it.text}</p><span class="card__more">Подробнее →</span></a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section section--ink stack">
+    <h2 class="giant">кейсы</h2>
+    <div class="grid grid-3">
+      {cases.map((c) => <CaseCard href={`/keisy/${c.id}/`} logo={c.data.logo} metric={c.data.metric} title={c.data.client} desc={c.data.summary} tags={[c.data.city]} />)}
+    </div>
+    <div><Button href="/keisy/" variant="light">Все кейсы</Button></div>
+  </section>
+
+  <Stages
+    lead="От заявки до первых результатов — по понятному плану со сроками."
+    items={[
+      { title: 'Разбор задачи', points: ['45 минут с маркетологом', 'Точка А: каналы, заявки, бюджет', 'Что даст быстрый эффект'], time: '1–3 дня' },
+      { title: 'Смета и план', points: ['2 варианта решения', 'Сроки и KPI', '«Говорим прямо» — что не обещаем'], time: '1 рабочий день' },
+      { title: 'Запуск', points: ['Доступы и аналитика', 'Первые работы по плану', 'Еженедельный статус'], time: '1–2 недели' },
+      { title: 'Рост и отчёт', points: ['Отчёт до 5 числа', 'Цифры против плана', 'Решения на следующий месяц'], time: 'каждый месяц' },
+    ]}
+  />
+
+  <section class="section stack">
+    <div class="stack-sm"><span class="eyebrow">клиенты</span><h2 class="h2">С кем работали</h2></div>
+    <div class="grid grid-3">
+      {Object.entries(clients).map(([k, v]) => (
+        <div class="card card--mist"><span class="card__num">{k}</span><p style="color:var(--color-ink);font-weight:700;font-size:18px">{v.join(' · ')}</p></div>
+      ))}
+    </div>
+  </section>
+
+  <Faq items={faq} />
+  <LeadForm topic="Главная" />
+</Base>

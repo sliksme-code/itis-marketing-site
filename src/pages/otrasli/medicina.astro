@@ -1,0 +1,110 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Button from '../../components/Button.astro';
+import CaseCard from '../../components/CaseCard.astro';
+import Stages from '../../components/Stages.astro';
+import Faq from '../../components/Faq.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import { getCollection } from 'astro:content';
+import { site } from '../../data/site';
+
+const cases = (await getCollection('cases', (c) => c.data.industry === 'medicina')).sort((a, b) => a.data.order - b.data.order);
+
+const faq = [
+  { q: 'Вы учитываете ограничения рекламы медицинских услуг?', a: 'Да. Тексты, объявления и страницы врачей готовим с учётом требований к рекламе медицинских услуг: предупреждения о противопоказаниях, корректные формулировки без обещаний излечения, данные лицензии на сайте. Финальные материалы согласуем с медицинским директором клиники.' },
+  { q: 'Работаете с сетями клиник в нескольких городах?', a: 'Да, это основной формат: региональная структура сайта, страницы филиалов и врачей, карточки на Яндекс Картах и 2ГИС, отчёты по каждому филиалу. Например, сеть клиник «Ибис» — ТОП поиска в 12 городах, сеть «Ариадна» — 4 города.' },
+  { q: 'Что такое ИИ-аналитика звонков и зачем она клинике?', a: 'ИИ слушает и оценивает 100% звонков администраторов и колл-центра: дозвонился ли пациент, предложили ли запись, отработали ли возражения. Руководитель видит рейтинг сотрудников и потерянные записи, а администраторы получают рекомендации по каждому звонку.' },
+  { q: 'Можно начать с одного канала?', a: 'Да. Часто начинаем с аудита и одного канала с самым быстрым эффектом — например, контекстной рекламы или контроля звонков, — а SEO и репутацию подключаем следом.' },
+  { q: 'Сколько стоит маркетинг для клиники?', a: 'Отдельный канал — от 35 000 ₽ в месяц, комплексный маркетинг под ключ — от 90 000 ₽ в месяц без НДС. Рекламный бюджет оплачивается отдельно. Смету готовим за 1 рабочий день после разбора.' },
+  { q: 'Как вы считаете результат?', a: 'В записях на приём и стоимости записи по каждому каналу. Для этого настраиваем цели в Метрике, коллтрекинг и связку с МИС или CRM клиники.' },
+];
+
+const service = {
+  '@context': 'https://schema.org', '@type': 'Service',
+  name: 'Маркетинг для медицинских клиник и медцентров',
+  serviceType: 'Маркетинг медицинских услуг',
+  provider: { '@id': `${site.url}/#org` },
+  areaServed: 'RU',
+  audience: { '@type': 'BusinessAudience', name: 'Медицинские клиники и сети клиник' },
+};
+---
+<Base
+  title="Маркетинг для медицинских клиник и медцентров — SEO, реклама, ИИ-контроль звонков | itis"
+  description="Маркетинг для клиник под ключ: SEO для сетей и филиалов, контекстная реклама, репутация на картах, сайты и ИИ-аналитика звонков администраторов. Кейсы «Корд», «Ибис», «Ариадна»."
+  jsonLd={[service]}
+>
+  <section class="section hero">
+    <div class="hero__main">
+      <div class="stack">
+        <Breadcrumbs items={[{ href: '/otrasli/', title: 'Отрасли' }, { href: '/otrasli/medicina/', title: 'Медицина и клиники' }]} />
+        <h1 class="h1 h1--accent">Маркетинг для медицинских клиник и медцентров</h1>
+        <p class="lead">Приводим пациентов из поиска, рекламы и карт — и контролируем, чтобы администраторы превращали звонки в записи на приём.</p>
+      </div>
+      <div class="actions">
+        <Button href="#zayavka">Разбор маркетинга клиники</Button>
+        <span class="pill pill--dot">7 проектов в медицине только за 2024 год</span>
+      </div>
+    </div>
+    <img class="hero__img" src="/img/clinic.webp" alt="Кабинет приёма в клинике" width="740" height="1110" fetchpriority="high" />
+  </section>
+
+  <section class="grid grid-3" aria-label="Результаты в медицине">
+    <div class="stat section--coral"><span class="stat__value">+70%</span><span class="stat__label">поискового трафика за 10 месяцев — офтальмологическая клиника «Корд»</span></div>
+    <div class="stat card--ink"><span class="stat__value">12</span><span class="stat__label">городов в ТОП поиска — сеть клиник «Ибис»</span></div>
+    <div class="stat card"><span class="stat__value">7 000</span><span class="stat__label">звонков в месяц под ИИ-контролем — сеть клиник «Ариадна»</span></div>
+  </section>
+
+  <section class="section section--ink stack">
+    <div class="stack-sm"><span class="eyebrow">задачи клиник</span><h2 class="h2">Где клиника теряет пациентов</h2></div>
+    <div class="grid grid-4">
+      <div class="card card--ink2"><h3 class="h3">Не находят в поиске</h3><p>По запросам «офтальмолог Казань» или «МРТ рядом» в ТОПе агрегаторы и конкуренты.</p></div>
+      <div class="card card--ink2"><h3 class="h3">Дорогая реклама</h3><p>Клики в медицине дорогие, а заявки без контроля качества не доходят до записи.</p></div>
+      <div class="card card--ink2"><h3 class="h3">Слабый рейтинг на картах</h3><p>Пациенты выбирают клинику по отзывам на Яндекс Картах и 2ГИС.</p></div>
+      <div class="card card--ink2"><h3 class="h3">Звонки без записи</h3><p>Администратор не перезвонил, не предложил время, не отработал цену — пациент ушёл.</p></div>
+    </div>
+  </section>
+
+  <section class="section stack">
+    <div class="stack-sm"><span class="eyebrow">решение</span><h2 class="h2">Что делаем для клиник</h2><p class="lead">Связка каналов под путь пациента: нашёл → выбрал → позвонил → записался → пришёл снова.</p></div>
+    <div class="grid grid-3">
+      <a class="card card--mist" href="/uslugi/seo-prodvizhenie/"><span class="card__num">SEO</span><h3 class="h3">SEO для клиник и сетей</h3><p>Страницы услуг, врачей и филиалов, гео-запросы, медицинский контент с экспертизой врачей.</p><span class="card__more">Подробнее →</span></a>
+      <a class="card card--mist" href="/uslugi/kontekstnaya-reklama/"><span class="card__num">реклама</span><h3 class="h3">Контекстная реклама</h3><p>Яндекс Директ по направлениям и филиалам, контроль стоимости записи, а не клика.</p><span class="card__more">Подробнее →</span></a>
+      <a class="card card--mist" href="/uslugi/reputaciya-i-geo/"><span class="card__num">карты</span><h3 class="h3">Репутация и карты</h3><p>Яндекс Бизнес, 2ГИС, Google Maps: карточки филиалов, ответы на отзывы, рост рейтинга.</p><span class="card__more">Подробнее →</span></a>
+      <a class="card card--ink" href="/uslugi/ii-analitika-zvonkov/"><span class="card__num">ИИ</span><h3 class="h3">ИИ-аналитика звонков</h3><p>Оценка каждого звонка, рейтинг администраторов, рекомендации и планы обучения.</p><span class="card__more">Подробнее →</span></a>
+      <a class="card card--mist" href="/uslugi/razrabotka-sajtov/"><span class="card__num">сайт</span><h3 class="h3">Сайт клиники</h3><p>Онлайн-запись, страницы врачей, цены, лицензии — всё, что повышает доверие и конверсию.</p><span class="card__more">Подробнее →</span></a>
+      <a class="card card--coral" href="/kompleksnyj-marketing/"><span class="card__num">под ключ</span><h3 class="h3">Маркетинг клиники под ключ</h3><p>Все каналы и аналитика в одних руках, ежемесячный отчёт по записям и выручке.</p><span class="card__more">от 90 000 ₽/мес →</span></a>
+    </div>
+  </section>
+
+  <section class="section section--mist split">
+    <div class="stack"><span class="eyebrow">ценность</span><h2 class="h2">Что клиника получает в итоге</h2></div>
+    <ul class="checks prose">
+      <li><b>Больше первичных пациентов</b> из поиска и карт по направлениям с максимальной маржой.</li>
+      <li><b>Дешевле запись на приём</b> — бюджет переносится в каналы, которые дают записи, а не клики.</li>
+      <li><b>Меньше потерянных звонков</b> — ИИ показывает, где администраторы теряют пациентов, и как это исправить.</li>
+      <li><b>Прозрачный отчёт</b> по каждому филиалу и направлению: записи, стоимость, выручка.</li>
+    </ul>
+  </section>
+
+  <section class="section section--ink stack">
+    <h2 class="giant">кейсы клиник</h2>
+    <div class="grid grid-3">
+      {cases.map((c) => <CaseCard href={`/keisy/${c.id}/`} logo={c.data.logo} metric={c.data.metric} title={c.data.client} desc={c.data.summary} tags={[c.data.city]} />)}
+    </div>
+    <p class="muted">Также работали с Zen Clinic, Клиникой Курпатова и центром доктора Очеретиной.</p>
+  </section>
+
+  <Stages
+    title="Как запускаем маркетинг клиники"
+    items={[
+      { title: 'Аудит', points: ['Сайт, реклама, карты', 'Прослушка звонков', 'Конкуренты в городе'], time: '3–5 дней' },
+      { title: 'План', points: ['Каналы по направлениям', 'Бюджет и план записей', 'KPI по филиалам'], time: '3–5 дней' },
+      { title: 'Запуск', points: ['Аналитика и коллтрекинг', 'Реклама и SEO', 'Интеграция с МИС/CRM'], time: '2–3 недели' },
+      { title: 'Управление', points: ['Еженедельный статус', 'Отчёт до 5 числа', 'Перераспределение бюджета'], time: 'каждый месяц' },
+    ]}
+  />
+
+  <Faq items={faq} title="Вопросы о маркетинге для клиник" />
+  <LeadForm topic="Медицина" title="Разбор маркетинга вашей клиники" lead="Посмотрим сайт, рекламу, карты и выборочно звонки администраторов — и покажем, где клиника теряет пациентов. Ответим в течение часа в рабочее время." />
+</Base>

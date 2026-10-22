@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CaseCard from '../../components/CaseCard.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import { getCollection } from 'astro:content';
+import { industries } from '../../data/site';
+const cases = (await getCollection('cases')).sort((a, b) => a.data.order - b.data.order);
+const groups = industries.map((i) => ({ ...i, items: cases.filter((c) => i.href === `/otrasli/${c.data.industry}/`) })).filter((g) => g.items.length);
+---
+<Base title="Кейсы маркетингового агентства itis — результаты в цифрах" description="Кейсы itis маркетинг: SEO, контекстная реклама, сайты, исследования и ИИ-внедрения для клиник, автобизнеса, промышленности, недвижимости и брендов. Результаты в цифрах.">
+  <section class="section stack">
+    <Breadcrumbs items={[{ href: '/keisy/', title: 'Кейсы' }]} />
+    <h1 class="h1">Кейсы: результаты в цифрах</h1>
+    <p class="lead">Каждый кейс — отдельная страница: ситуация, что сделали, цифры до и после. Фильтр по отраслям — ниже.</p>
+    <div class="pills">{groups.map((g) => <a class="pill" href={`#${g.href.split('/')[2]}`}>{g.title}</a>)}</div>
+  </section>
+  {groups.map((g) => (
+    <section class="section section--ink stack" id={g.href.split('/')[2]}>
+      <h2 class="h2"><a href={g.href} style="text-decoration:none">{g.title}</a></h2>
+      <div class="grid grid-3">
+        {g.items.map((c) => <CaseCard href={`/keisy/${c.id}/`} logo={c.data.logo} metric={c.data.metric} title={c.data.client} desc={c.data.summary} tags={[c.data.city]} />)}
+      </div>
+    </section>
+  ))}
+  <LeadForm topic="Кейсы" />
+</Base>

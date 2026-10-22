@@ -1,0 +1,17 @@
+---
+interface Props { title?: string; lead?: string; items: { title: string; points: string[]; time: string }[] }
+const { title = 'Как работаем', lead, items } = Astro.props;
+---
+<section class="section stack">
+  <div class="stack-sm"><h2 class="h2">{title}</h2>{lead && <p class="lead">{lead}</p>}</div>
+  <ol class="grid grid-4" style="list-style:none;margin:0;padding:0">
+    {items.map((s, i) => (
+      <li class:list={['stage', i === 0 && 'stage--coral']}>
+        <span class="stage__title">{i + 1}. {s.title}</span>
+        <hr />
+        <ul>{s.points.map((p) => <li>{p}</li>)}</ul>
+        <span class="stage__time">{s.time}</span>
+      </li>
+    ))}
+  </ol>
+</section>

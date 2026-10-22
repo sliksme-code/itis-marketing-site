@@ -1,0 +1,12 @@
+---
+interface Props { href?: string; logo?: string; metric: string; title: string; desc: string; tags?: string[] }
+const { href, logo, metric, title, desc, tags = [] } = Astro.props;
+const Tag = href ? 'a' : 'div';
+---
+<Tag class="case" href={href}>
+  {logo && <img class="case__logo" src={logo} alt={`Логотип: ${title}`} width="120" height="90" loading="lazy" />}
+  <span class="case__metric">{metric}</span>
+  <h3 class="case__title">{title}</h3>
+  <p class="case__desc">{desc}</p>
+  {tags.length > 0 && <div class="pills">{tags.map((t) => <span class="pill">{t}</span>)}</div>}
+</Tag>

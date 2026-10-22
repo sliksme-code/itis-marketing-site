@@ -1,0 +1,20 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import { services, flagship } from '../../data/site';
+---
+<Base title="Услуги маркетингового агентства itis — SEO, контекст, сайты, исследования" description="Услуги itis маркетинг: SEO-продвижение, контекстная реклама, разработка сайтов, маркетинговые исследования и стратегия, ИИ-аналитика звонков, техподдержка сайтов. Цены от 25 000 ₽/мес.">
+  <section class="section stack">
+    <Breadcrumbs items={[{ href: '/uslugi/', title: 'Услуги' }]} />
+    <h1 class="h1">Услуги</h1>
+    <p class="lead">Берём канал целиком и отвечаем за его результат. Если нужен весь маркетинг сразу — смотрите продукты под ключ.</p>
+  </section>
+  <section class="grid grid-2">
+    {flagship.map((s, i) => <a class:list={['card', i === 0 ? 'card--coral' : 'card--ink']} href={s.href} style="padding:40px"><h2 class="h2">{s.title}</h2><p>{s.text}</p><span class="card__price">{s.price}</span></a>)}
+  </section>
+  <section class="grid grid-3">
+    {services.map((s) => <a class="card" href={s.href}><h2 class="h3">{s.title}</h2><p>{s.text}</p><span class="card__price">{s.price}</span></a>)}
+  </section>
+  <LeadForm topic="Услуги" />
+</Base>

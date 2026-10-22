@@ -1,0 +1,34 @@
+---
+// Форма заявки. Работает без JS как обычная форма. Пока не подключён приём заявок
+// (site.leadEndpoint пуст), отправка открывает Telegram с текстом заявки.
+import { site } from '../data/site';
+import Button from './Button.astro';
+interface Props { title?: string; lead?: string; topic?: string }
+const { title = 'Рассчитаем проект за 1 рабочий день', lead = 'Ответим в течение часа в рабочее время. Сначала — 45-минутный разбор задачи, потом смета.', topic = 'Сайт' } = Astro.props;
+---
+<section class="section section--ink stack" id="zayavka">
+  <div class="stack-sm">
+    <h2 class="h2">{title}</h2>
+    <p class="lead">{lead}</p>
+  </div>
+  <form class="form" method="post" action={site.leadEndpoint || site.telegram} data-telegram={site.telegram} data-endpoint={site.leadEndpoint}>
+    <input type="hidden" name="topic" value={topic} />
+    <div class="field"><label for="lead-name">Имя</label><input id="lead-name" name="name" placeholder="Имя" autocomplete="name" required /></div>
+    <div class="field"><label for="lead-phone">Телефон</label><input id="lead-phone" name="phone" type="tel" placeholder="+7 (999) 999-99-99" autocomplete="tel" required /></div>
+    <div class="field"><label for="lead-task">Задача</label><input id="lead-task" name="task" placeholder="Задача или сайт" /></div>
+    <button class="btn btn--primary" type="submit"><span>Рассчитать проект</span><span class="btn__chip" aria-hidden="true"></span></button>
+  </form>
+  <p class="form__note">Нажимая кнопку, вы соглашаетесь с <a href="/privacy-policy/">политикой конфиденциальности</a>. Быстрее всего — <a href={site.telegram}>написать в Telegram</a> или позвонить: <a href={site.phoneHref}>{site.phone}</a>.</p>
+</section>
+<script>
+  // Временная отправка: пока нет приёмника заявок, переводим в Telegram.
+  document.querySelectorAll<HTMLFormElement>('form[data-telegram]').forEach((f) => {
+    if (f.dataset.endpoint) return;
+    f.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const d = new FormData(f);
+      const text = `Заявка с сайта (${d.get('topic')}): ${d.get('name')}, ${d.get('phone')}. ${d.get('task') || ''}`;
+      window.open(`${f.dataset.telegram}?text=${encodeURIComponent(text)}`, '_blank');
+    });
+  });
+</script>
