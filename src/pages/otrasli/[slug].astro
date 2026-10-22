@@ -1,0 +1,9 @@
+---
+import Landing from '../../components/Landing.astro';
+import { industryPages } from '../../data/landings/industries';
+export function getStaticPaths() {
+  return industryPages.map((d) => ({ params: { slug: d.slug }, props: { d } }));
+}
+const { d } = Astro.props;
+---
+<Landing data={d} />

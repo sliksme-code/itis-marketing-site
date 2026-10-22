@@ -15,7 +15,7 @@ results:
   - { value: "12", label: "городов-миллионников в ТОП" }
   - { value: "[__]", label: "трафик до / после" }
 draft: true
-order: 2
+order: 52
 ---
 
 ## Ситуация

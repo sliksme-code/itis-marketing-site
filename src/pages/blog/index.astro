@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import { getCollection } from 'astro:content';
+const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const fmt = (d: Date) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<Base title="Блог itis маркетинг — SEO, реклама, сайты и ИИ в маркетинге" description="Практические статьи агентства itis маркетинг: SEO и контекстная реклама, аналитика и стоимость клиента, сайты и переезд без потери позиций, ИИ в маркетинге и продажах.">
+  <section class="section stack">
+    <Breadcrumbs items={[{ href: '/blog/', title: 'Блог' }]} />
+    <h1 class="h1">Блог: практика маркетинга</h1>
+    <p class="lead">Разбираем, как работают каналы, как считать результат и где бизнес теряет клиентов — на примерах из наших проектов.</p>
+  </section>
+  <section class="grid grid-2">
+    {posts.map((p, i) => (
+      <a class:list={['card', i === 0 ? 'card--ink' : '']} href={`/blog/${p.id}/`} style="padding:36px;min-height:260px">
+        <span class="card__num">{p.data.category} · {p.data.readingTime} мин</span>
+        <h2 class="h3" style="font-size:clamp(22px,2vw,28px)">{p.data.title}</h2>
+        <p>{p.data.description}</p>
+        <span class="card__more" style="margin-top:auto">Читать →</span>
+      </a>
+    ))}
+  </section>
+  <LeadForm topic="Блог" />
+</Base>

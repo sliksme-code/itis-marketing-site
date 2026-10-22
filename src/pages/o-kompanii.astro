@@ -1,0 +1,68 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Button from '../components/Button.astro';
+import LeadForm from '../components/LeadForm.astro';
+import { clients } from '../data/site';
+const team = [
+  { name: 'Марат Галиуллин', role: 'Основатель, ведущий маркетолог', text: '10+ лет в digital-маркетинге и SEO, 90+ проектов клиентов. Основатель ИИ-платформы Sellerator. Преподаёт «Цифровой маркетинг» и «Таргетолог» в ЦОК НТИ и РАНХиГС. Выпускник акселератора ФРИИ, NEXT MBA Marketing Director, курса Marketing in a Digital World (University of Illinois).' },
+  { name: 'Гульназ', role: 'Менеджер проектов', text: 'Ведёт проекты по таймлайну: старт, сроки, статусы, отчёты и закрывающие документы.' },
+  { name: 'Богдан', role: 'Маркетолог-аналитик', text: 'Отвечает за содержание и качество работ: стратегии, исследования, рекламные кампании. Специализация — недвижимость, медицина, автобизнес.' },
+  { name: 'Антон', role: 'SEO-специалист', text: '8 лет в SEO: технический аудит, семантика, работа с поведенческими и коммерческими факторами.' },
+  { name: 'Антонина', role: 'Ассистент', text: 'Документы, согласования и коммуникация с клиентами.' },
+];
+const ld = { '@context': 'https://schema.org', '@type': 'AboutPage', name: 'О компании itis маркетинг' };
+---
+<Base title="О компании itis маркетинг — команда, подход, партнёры" description="itis маркетинг — агентство полного цикла из Москвы и Казани: 10+ лет, 90+ проектов, собственная ИИ-платформа Sellerator. Команда, подход к работе и партнёры." jsonLd={[ld]}>
+  <section class="section split">
+    <div class="stack">
+      <Breadcrumbs items={[{ href: '/o-kompanii/', title: 'О компании' }]} />
+      <h1 class="h1">Агентство, которое считает заявки и деньги</h1>
+      <p class="lead">itis маркетинг работает с 2015 года: от стратегии и исследований до сайтов, рекламы и ИИ-агентов в продажах. Офисы в Москве и Казани, клиенты по всей России и за рубежом.</p>
+    </div>
+    <div class="grid grid-2" style="align-content:start">
+      <div class="stat section--coral"><span class="stat__value">10+</span><span class="stat__label">лет на рынке</span></div>
+      <div class="stat card--ink"><span class="stat__value">90+</span><span class="stat__label">проектов клиентов</span></div>
+      <div class="stat card--mist" style="grid-column:1/-1;min-height:auto"><span class="stat__label">Медицина · автобизнес · промышленность и B2B · недвижимость · финансы · бренды</span></div>
+    </div>
+  </section>
+
+  <section class="section section--ink stack">
+    <div class="stack-sm"><span class="eyebrow">подход</span><h2 class="h2">Как мы работаем</h2></div>
+    <div class="grid grid-4">
+      <div class="card card--ink2"><h3 class="h3">Результат в заявках</h3><p>Отчитываемся заявками, стоимостью клиента и выручкой, а не кликами и позициями.</p></div>
+      <div class="card card--ink2"><h3 class="h3">Говорим прямо</h3><p>В каждом предложении — раздел о том, чего мы не обещаем и какие есть риски.</p></div>
+      <div class="card card--ink2"><h3 class="h3">Стратегия + исполнение</h3><p>Не оставляем документ на полке: внедряем план и обучаем команду клиента.</p></div>
+      <div class="card card--ink2"><h3 class="h3">ИИ там, где он полезен</h3><p>ИИ-агенты берут рутину и скорость, решения принимает маркетолог.</p></div>
+    </div>
+  </section>
+
+  <section class="section stack">
+    <div class="stack-sm"><span class="eyebrow">команда</span><h2 class="h2">Кто отвечает за результат</h2></div>
+    <div class="grid grid-3">
+      {team.map((t, i) => (
+        <div class:list={['card', i === 0 ? 'card--ink' : 'card--mist']}>
+          <span aria-hidden="true" style={`width:56px;height:56px;border-radius:10px;display:grid;place-items:center;font-weight:800;font-size:22px;background:${i === 0 ? 'var(--color-accent)' : 'var(--color-ink)'};color:#fff`}>{t.name[0]}</span>
+          <h3 class="h3">{t.name}</h3>
+          <span class="card__num">{t.role}</span>
+          <p>{t.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section section--mist stack">
+    <div class="stack-sm"><span class="eyebrow">партнёры</span><h2 class="h2">Экосистема</h2></div>
+    <div class="grid grid-2">
+      <div class="card"><h3 class="h3">Sellerator</h3><p>Собственная ИИ-платформа для отделов продаж и контакт-центров: ИИ-агенты для заявок, речевая аналитика, ИИ-тренинг-центр. Технология ИИ-отдела маркетинга.</p><a class="card__more" href="https://sellerator.ru" rel="noopener">sellerator.ru →</a></div>
+      <div class="card"><h3 class="h3">Mark Weber Studio</h3><p>Агентство-партнёр: разработка сайтов и брендинг. Сайты, сделанные MWS, мы ведём в маркетинге; часть проектов делаем совместно.</p></div>
+    </div>
+  </section>
+
+  <section class="section stack">
+    <div class="stack-sm"><span class="eyebrow">клиенты</span><h2 class="h2">С кем работали</h2></div>
+    <div class="grid grid-3">{Object.entries(clients).map(([k, v]) => <div class="card card--mist"><span class="card__num">{k}</span><p style="color:var(--color-ink);font-weight:700;font-size:18px">{v.join(' · ')}</p></div>)}</div>
+    <div class="actions"><Button href="/keisy/">Смотреть кейсы</Button><Button href="/legal/" variant="ghost">Реквизиты</Button></div>
+  </section>
+  <LeadForm topic="О компании" />
+</Base>

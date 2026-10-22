@@ -252,3 +252,19 @@ a.case:hover .case__title { color: var(--color-accent-text); }
 
 .crumbs { min-width: 0; }
 .crumbs li { overflow-wrap: anywhere; }
+
+/* Таблицы и мелкий текст внутри статей и кейсов */
+.prose table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 15px; display: block; overflow-x: auto; }
+.prose th, .prose td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--ink-a10); vertical-align: top; }
+.prose th { font-weight: 800; background: var(--color-mist); }
+.prose ol { padding-left: 22px; margin: 12px 0; }
+.prose ol li + li { margin-top: 6px; }
+.prose a { color: var(--color-accent-text); }
+.prose small { font-size: 13px; color: var(--ink-a60); }
+.prose h2:first-child { margin-top: 0; }
+
+/* Широкие таблицы и длинные строки не должны растягивать страницу на телефоне */
+.wrap > *, .stack > *, .split > *, .hero > *, .grid > * { min-width: 0; }
+.crumbs li { min-width: 0; max-width: 100%; }
+/* Вложенные .wrap не центрируются через margin:auto — иначе ширина считается по содержимому */
+.wrap .wrap { width: 100%; max-width: none; margin: 0; }

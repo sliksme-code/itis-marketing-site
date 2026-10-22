@@ -15,7 +15,7 @@ results:
   - { value: "4", label: "города присутствия сети" }
   - { value: "[__]", label: "рост записей на приём" }
 draft: true
-order: 3
+order: 53
 ---
 
 ## Ситуация

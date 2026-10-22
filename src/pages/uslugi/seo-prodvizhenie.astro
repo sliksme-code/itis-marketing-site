@@ -9,7 +9,7 @@ import LeadForm from '../../components/LeadForm.astro';
 import { getCollection } from 'astro:content';
 import { site } from '../../data/site';
 
-const cases = (await getCollection('cases', (c) => c.data.services.includes('seo-prodvizhenie'))).sort((a, b) => a.data.order - b.data.order);
+const cases = (await getCollection('cases', (c) => c.data.services.includes('seo-prodvizhenie') && !c.data.draft)).sort((a, b) => a.data.order - b.data.order).slice(0, 5);
 
 const faq = [
   { q: 'Через сколько придёт результат от SEO?', a: 'Первые изменения в позициях и трафике видны через 2–3 месяца, устойчивый рост заявок — через 4–6 месяцев. Для молодого сайта и конкурентной ниши срок больше. Точный прогноз даём после аудита: он зависит от состояния сайта, конкурентов и бюджета на контент и ссылки.' },
@@ -32,7 +32,7 @@ const service = {
 ---
 <Base
   title="SEO-продвижение сайтов в Яндексе и Google — от 35 000 ₽/мес | itis маркетинг"
-  description="SEO-продвижение под заявки: аудит, семантика, контент, коммерческие факторы и гео-SEO для сетей. +70% поискового трафика у клиники «Корд» за 10 месяцев. Москва, Казань, вся Россия."
+  description="SEO-продвижение под заявки: аудит, семантика, контент, коммерческие факторы и гео-SEO для сетей. Органический трафик ×25 у «ТАТНЕФТЬ-Пресскомпозит», ×4 у Татсоцбанка. Москва, Казань, вся Россия."
   jsonLd={[service]}
 >
   <section class="section stack">
@@ -47,8 +47,8 @@ const service = {
         </div>
       </div>
       <div class="grid grid-2">
-        <div class="stat section--coral"><span class="stat__value">+70%</span><span class="stat__label">поискового трафика за 10 месяцев — клиника «Корд»</span></div>
-        <div class="stat card--ink"><span class="stat__value">12</span><span class="stat__label">городов-миллионников в ТОП — сеть клиник «Ибис»</span></div>
+        <div class="stat section--coral"><span class="stat__value">×25</span><span class="stat__label">органический трафик «ТАТНЕФТЬ-Пресскомпозит», ТОП-10 выдачи</span></div>
+        <div class="stat card--ink"><span class="stat__value">×4</span><span class="stat__label">SEO-трафик Татсоцбанка; ×3,5 — «БАРС Груп»</span></div>
         <div class="stat card--mist" style="grid-column:1/-1;min-height:auto"><span class="stat__label">10+ лет в SEO · медицина, авто, промышленность, международные бренды · Яндекс, Google, Naver</span></div>
       </div>
     </div>

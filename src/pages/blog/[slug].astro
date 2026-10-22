@@ -1,0 +1,49 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Button from '../../components/Button.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import { getCollection, render } from 'astro:content';
+import { site, services, flagship, industries } from '../../data/site';
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((p) => ({ params: { slug: p.id }, props: { post: p } }));
+}
+const { post } = Astro.props;
+const d = post.data;
+const { Content } = await render(post);
+const all = [...flagship, ...services, ...industries];
+const related = d.related.map((h) => all.find((x) => x.href === h)).filter(Boolean);
+const others = (await getCollection('blog', (p) => p.id !== post.id)).slice(0, 2);
+const ld = {
+  '@context': 'https://schema.org', '@type': 'BlogPosting',
+  headline: d.title, description: d.description, datePublished: d.date.toISOString(),
+  author: { '@type': 'Person', name: 'Марат Галиуллин', jobTitle: 'Ведущий маркетолог' },
+  publisher: { '@id': `${site.url}/#org` },
+  mainEntityOfPage: new URL(`/blog/${post.id}/`, site.url).href,
+};
+const fmt = d.date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<Base title={d.seoTitle} description={d.description} jsonLd={[ld]}>
+  <article class="wrap" style="padding:0">
+    <header class="section stack">
+      <Breadcrumbs items={[{ href: '/blog/', title: 'Блог' }, { href: `/blog/${post.id}/`, title: d.title }]} />
+      <span class="eyebrow">{d.category} · {d.readingTime} мин чтения</span>
+      <h1 class="h1" style="font-size:clamp(30px,3.6vw,52px);max-width:1000px">{d.title}</h1>
+      <p class="muted">Марат Галиуллин, ведущий маркетолог · <time datetime={d.date.toISOString()}>{fmt}</time></p>
+    </header>
+    <div class="section"><div class="prose"><Content /></div></div>
+  </article>
+  {related.length > 0 && (
+    <section class="section section--mist stack">
+      <h2 class="h2">Решения по теме</h2>
+      <div class="grid grid-3">{related.map((r) => <a class="card" href={r!.href}><h3 class="h3">{r!.title}</h3><p>{r!.text}</p><span class="card__more">Подробнее →</span></a>)}</div>
+    </section>
+  )}
+  <section class="section stack">
+    <h2 class="h2">Ещё статьи</h2>
+    <div class="grid grid-2">{others.map((p) => <a class="card card--mist" href={`/blog/${p.id}/`}><span class="card__num">{p.data.category}</span><h3 class="h3">{p.data.title}</h3><p>{p.data.description}</p></a>)}</div>
+    <div><Button href="/blog/" variant="ghost">Все статьи</Button></div>
+  </section>
+  <LeadForm topic={`Статья: ${d.title}`} />
+</Base>

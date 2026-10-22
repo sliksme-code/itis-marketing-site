@@ -8,7 +8,7 @@ import LeadForm from '../components/LeadForm.astro';
 import { getCollection } from 'astro:content';
 import { site, services, industries, flagship, clients } from '../data/site';
 
-const cases = (await getCollection('cases')).sort((a, b) => a.data.order - b.data.order).slice(0, 3);
+const cases = (await getCollection('cases', (c) => !c.data.draft)).sort((a, b) => a.data.order - b.data.order).slice(0, 6);
 
 const faq = [
   { q: 'С какими компаниями вы работаете?', a: 'С компаниями, которым нужен системный поток клиентов: сети клиник, автобизнес, производство и B2B, недвижимость, финансы, бренды и интернет-магазины. Минимальный бюджет — от 150 000 ₽ за разовый проект или от 25 000 ₽ в месяц на абонементе.' },
@@ -41,7 +41,7 @@ const faq = [
   <section class="grid grid-4" aria-label="Агентство в цифрах">
     <div class="stat section--coral"><span class="stat__value">10+</span><span class="stat__label">лет растим продажи клиентов через маркетинг</span></div>
     <div class="stat card--ink"><span class="stat__value">90+</span><span class="stat__label">проектов клиентов с 2015 года</span></div>
-    <div class="stat card"><span class="stat__value">+70%</span><span class="stat__label">поискового трафика за 10 месяцев — клиника «Корд»</span></div>
+    <div class="stat card"><span class="stat__value">×25</span><span class="stat__label">органический трафик «ТАТНЕФТЬ-Пресскомпозит» после SEO</span></div>
     <div class="stat card"><span class="stat__value">7 000</span><span class="stat__label">звонков в месяц оценивает ИИ в сети клиник «Ариадна»</span></div>
   </section>
 

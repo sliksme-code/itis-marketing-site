@@ -4,7 +4,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --no-audit --no-fund
 COPY . .
-RUN npm run build && npm run check:html
+RUN npm run build && npm run check:html && node scripts/check-links.mjs
 
 # Отдача: Caddy с редиректами и кэшем
 FROM caddy:2.8.4-alpine

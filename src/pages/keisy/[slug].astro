@@ -33,7 +33,7 @@ const ld = {
         <h1 class="h1" style="font-size:clamp(30px,3.4vw,48px);line-height:1">{d.title}</h1>
         <div class="pills">
           <span class="pill">{d.city}</span>
-          <span class="pill">Срок: {d.period}</span>
+          {!d.period.includes('[') && <span class="pill">Срок: {d.period}</span>}
           {ind && <a class="pill" href={ind.href}>{ind.title}</a>}
           {used.map((s) => <a class="pill pill--dot" href={s.href}>{s.title}</a>)}
         </div>

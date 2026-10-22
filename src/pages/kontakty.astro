@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Button from '../components/Button.astro';
+import LeadForm from '../components/LeadForm.astro';
+import { site } from '../data/site';
+const ld = { '@context': 'https://schema.org', '@type': 'ContactPage', name: 'Контакты itis маркетинг', about: { '@id': `${site.url}/#org` } };
+---
+<Base title="Контакты itis маркетинг — Москва и Казань" description={`Контакты маркетингового агентства itis: телефон ${site.phone}, Telegram, e-mail ${site.email}. Москва и Казань, работаем по всей России. Ответим в течение часа.`} jsonLd={[ld]}>
+  <section class="section stack">
+    <Breadcrumbs items={[{ href: '/kontakty/', title: 'Контакты' }]} />
+    <h1 class="h1">Контакты</h1>
+    <p class="lead">Быстрее всего — Telegram или звонок. В рабочее время отвечаем в течение часа.</p>
+  </section>
+  <section class="grid grid-3">
+    <a class="card card--ink" href={site.phoneHref} style="padding:36px"><span class="card__num">телефон</span><h2 class="h2" style="font-size:clamp(26px,2.6vw,36px)">{site.phone}</h2><p>Пн–Пт, 9:00–18:00 по Москве</p></a>
+    <a class="card section--coral" href={site.telegram} style="padding:36px" target="_blank" rel="noopener"><span class="card__num">telegram</span><h2 class="h2" style="font-size:clamp(26px,2.6vw,36px)">@itismarketing</h2><p>Самый быстрый способ связаться</p></a>
+    <a class="card card--mist" href={`mailto:${site.email}`} style="padding:36px"><span class="card__num">e-mail</span><h2 class="h2" style="font-size:clamp(22px,2.2vw,30px);overflow-wrap:anywhere">{site.email}</h2><p>Для документов и подробных запросов</p></a>
+  </section>
+  <section class="section section--mist split">
+    <div class="stack"><h2 class="h2">Москва и Казань</h2><p class="lead">Встречи — в офисе или онлайн по договорённости. Работаем с клиентами по всей России и за рубежом.</p></div>
+    <div class="actions" style="align-self:end"><Button href="/legal/" variant="ghost">Реквизиты компании</Button><Button href="#zayavka">Оставить заявку</Button></div>
+  </section>
+  <LeadForm topic="Контакты" />
+</Base>

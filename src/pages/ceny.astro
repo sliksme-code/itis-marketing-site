@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Faq from '../components/Faq.astro';
+import LeadForm from '../components/LeadForm.astro';
+import { services, flagship } from '../data/site';
+const faq = [
+  { q: 'Цены указаны с НДС?', a: 'Нет. Все цены — без НДС; НДС 5% начисляется сверху. Рекламные бюджеты оплачиваются отдельно, напрямую в рекламные системы.' },
+  { q: 'Как устроена оплата?', a: '50% аванс за период или этап, 50% — после подписания акта. Для исследований — 40% на старте, 30% после сбора данных и 30% при сдаче.' },
+  { q: 'Есть ли скидки?', a: 'Постоянным клиентам — 10% на второй заказ и 15% начиная с третьего. Скидка распространяется на весь объём работ по заказу.' },
+  { q: 'Какой минимальный бюджет?', a: 'От 150 000 ₽ за разовый проект или от 25 000 ₽ в месяц на абонементе.' },
+  { q: 'Как быстро получить точную смету?', a: 'За 1 рабочий день после 45-минутного разбора задачи. Обычно предлагаем два варианта — базовый и расширенный.' },
+  { q: 'Работаете по договору и с ЭДО?', a: 'Да. Договор с ООО «Рост-Решения», закрывающие документы — через Контур.Диадок. Срок действия коммерческого предложения — 30 дней.' },
+];
+---
+<Base title="Цены на услуги маркетингового агентства itis — SEO, реклама, сайты" description="Стоимость услуг itis маркетинг: комплексный маркетинг от 90 000 ₽/мес, SEO и контекст от 35 000 ₽/мес, сайты от 200 000 ₽, исследования от 400 000 ₽. Цены без НДС 5%, скидки постоянным клиентам.">
+  <section class="section stack">
+    <Breadcrumbs items={[{ href: '/ceny/', title: 'Цены' }]} />
+    <h1 class="h1">Цены на услуги</h1>
+    <p class="lead">Цены «от» — для типового объёма. Точную смету в двух вариантах готовим за 1 рабочий день после разбора задачи. Все цены без НДС 5%.</p>
+  </section>
+
+  <section class="section section--ink stack">
+    <h2 class="h2">Комплексный маркетинг</h2>
+    <div class="grid grid-3">
+      <div class="price"><span class="price__name">Старт</span><span class="price__value">от 90 000 ₽ <small>/мес</small></span><ul><li>Стратегия-лайт и план</li><li>Один основной канал</li><li>Аналитика и отчёт</li></ul></div>
+      <div class="price price--hot" style="background:var(--color-accent);border-color:var(--color-accent);color:var(--color-ink)"><span class="price__name">Рост</span><span class="price__value">от 180 000 ₽ <small style="color:var(--ink-a75)">/мес</small></span><ul style="color:var(--ink-a75)"><li>SEO + контекст</li><li>Контент и репутация</li><li>Сквозная аналитика</li><li>Ежемесячная сессия</li></ul></div>
+      <div class="price"><span class="price__name">ИИ-отдел маркетинга</span><span class="price__value">от 300 000 ₽ <small>/мес</small></span><ul><li>Всё из «Рост»</li><li>ИИ-агенты в рекламе, контенте и продажах</li><li>Выделенный маркетолог</li></ul></div>
+    </div>
+    <p class="muted"><a href={flagship[0].href} style="color:#fff">Подробнее о комплексном маркетинге →</a></p>
+  </section>
+
+  <section class="section stack">
+    <h2 class="h2">Отдельные услуги</h2>
+    <div class="table-wrap">
+      <table class="table">
+        <thead><tr><th scope="col">Услуга</th><th scope="col">Что входит</th><th scope="col">Цена</th></tr></thead>
+        <tbody>
+          {services.map((s) => <tr><td><a href={s.href}>{s.title}</a></td><td>{s.text}</td><td style="white-space:nowrap;font-weight:800">{s.price}</td></tr>)}
+          <tr><td>SEO-аудит</td><td>Технический аудит, контент, ссылки, конкуренты, план работ</td><td style="white-space:nowrap;font-weight:800">от 150 000 ₽</td></tr>
+          <tr><td>Корпоративный сайт</td><td>Структура под семантику, страницы услуг и кейсов, CRM</td><td style="white-space:nowrap;font-weight:800">от 600 000 ₽</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section section--mist split">
+    <div class="stack"><h2 class="h2">Условия</h2></div>
+    <ul class="checks prose">
+      <li><b>НДС 5%</b> начисляется сверху на указанные цены.</li>
+      <li><b>Оплата 50/50:</b> аванс за период или этап и остаток после акта.</li>
+      <li><b>Скидки:</b> 10% на второй заказ, 15% — с третьего.</li>
+      <li><b>Минимальный бюджет:</b> от 150 000 ₽ разово или от 25 000 ₽ в месяц.</li>
+      <li><b>Рекламный бюджет</b> оплачивается отдельно, кабинет остаётся у вас.</li>
+      <li><b>Договор помесячный,</b> расторжение — с уведомлением за 20 дней.</li>
+    </ul>
+  </section>
+  <Faq items={faq} title="Вопросы о ценах и оплате" />
+  <LeadForm topic="Цены" title="Получить смету за 1 рабочий день" />
+</Base>

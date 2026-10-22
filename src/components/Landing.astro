@@ -1,0 +1,145 @@
+---
+// Посадочная страница услуги, продукта или отрасли по единому шаблону:
+// герой → задачи клиента → что входит → ценность → (сравнение) → цены →
+// этапы → кейсы → «говорим прямо» → связанные решения → FAQ → заявка.
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from './Breadcrumbs.astro';
+import Button from './Button.astro';
+import CaseCard from './CaseCard.astro';
+import Stages from './Stages.astro';
+import Faq from './Faq.astro';
+import LeadForm from './LeadForm.astro';
+import { getCollection } from 'astro:content';
+import { site } from '../data/site';
+import type { Landing } from '../data/landing-types';
+
+interface Props { data: Landing }
+const { data: d } = Astro.props;
+
+const path = d.section === 'product' ? `/${d.slug}/` : `/${d.section}/${d.slug}/`;
+const crumbs = d.section === 'product'
+  ? [{ href: path, title: d.serviceName }]
+  : [{ href: `/${d.section}/`, title: d.section === 'uslugi' ? 'Услуги' : 'Отрасли' }, { href: path, title: d.serviceName }];
+
+const cases = (await getCollection('cases', (c) =>
+  (d.cases.ids ? d.cases.ids.includes(c.id) : false) ||
+  (d.cases.industry ? c.data.industry === d.cases.industry : false) ||
+  (d.cases.service ? c.data.services.includes(d.cases.service) : false)
+)).sort((a, b) => Number(a.data.draft) - Number(b.data.draft) || a.data.order - b.data.order).slice(0, 6);
+
+const ld = {
+  '@context': 'https://schema.org', '@type': 'Service',
+  name: d.serviceName, serviceType: d.serviceName,
+  description: d.description,
+  url: new URL(path, site.url).href,
+  provider: { '@id': `${site.url}/#org` },
+  areaServed: 'RU',
+  ...(d.priceFrom ? { offers: { '@type': 'Offer', priceCurrency: 'RUB', price: String(d.priceFrom), description: d.pricePill } } : {}),
+};
+const tones = ['section--coral', 'card--ink', 'card--mist'];
+---
+<Base title={d.seoTitle} description={d.description} jsonLd={[ld]}>
+  <section class="section stack">
+    <Breadcrumbs items={crumbs} />
+    <div class="split">
+      <div class="stack">
+        {d.eyebrow && <span class="eyebrow">{d.eyebrow}</span>}
+        <h1 class="h1 h1--accent">{d.h1}</h1>
+        <p class="lead">{d.lead}</p>
+        <div class="actions">
+          <Button href="#zayavka">{d.cta}</Button>
+          {d.pricePill && <span class="pill pill--dot">{d.pricePill}</span>}
+        </div>
+      </div>
+      <div class="grid grid-2" style="align-content:start">
+        {d.heroStats.map((s, i) => (
+          <div class:list={['stat', tones[i % 3]]} style={d.heroStats.length === 3 && i === 2 ? 'grid-column:1/-1;min-height:160px' : undefined}>
+            <span class="stat__value">{s.value}</span><span class="stat__label">{s.label}</span>
+          </div>
+        ))}
+        {d.heroNote && <div class="stat card--mist" style="grid-column:1/-1;min-height:auto"><span class="stat__label">{d.heroNote}</span></div>}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--ink stack">
+    <div class="stack-sm"><span class="eyebrow">{d.problems.eyebrow}</span><h2 class="h2">{d.problems.title}</h2></div>
+    <div class="grid grid-4">
+      {d.problems.items.map((it) => <div class="card card--ink2"><h3 class="h3">{it.title}</h3><p>{it.text}</p></div>)}
+    </div>
+  </section>
+
+  <section class="section stack">
+    <div class="stack-sm"><span class="eyebrow">{d.includes.eyebrow}</span><h2 class="h2">{d.includes.title}</h2>{d.includes.lead && <p class="lead">{d.includes.lead}</p>}</div>
+    <div class="grid grid-4">
+      {d.includes.items.map((it, i) => {
+        const last = d.includes.accentLast !== false && i === d.includes.items.length - 1;
+        const cls = ['card', last ? 'card--ink' : 'card--mist'];
+        const num = it.tag ?? String(i + 1).padStart(2, '0');
+        return it.href
+          ? <a class:list={cls} href={it.href}><span class="card__num">{num}</span><h3 class="h3">{it.title}</h3><p>{it.text}</p><span class="card__more">Подробнее →</span></a>
+          : <div class:list={cls}><span class="card__num">{num}</span><h3 class="h3">{it.title}</h3><p>{it.text}</p></div>;
+      })}
+    </div>
+  </section>
+
+  <section class="section section--mist split">
+    <div class="stack"><span class="eyebrow">ценность для бизнеса</span><h2 class="h2">{d.value.title}</h2></div>
+    <ul class="checks prose">
+      {d.value.items.map((v) => <li><b>{v.title}</b> {v.text}</li>)}
+    </ul>
+  </section>
+
+  {d.compare && (
+    <section class="section stack">
+      <div class="stack-sm"><span class="eyebrow">сравнение</span><h2 class="h2">{d.compare.title}</h2>{d.compare.lead && <p class="lead">{d.compare.lead}</p>}</div>
+      <div class="table-wrap">
+        <table class="table">
+          <thead><tr>{d.compare.head.map((h) => <th scope="col">{h}</th>)}</tr></thead>
+          <tbody>{d.compare.rows.map((r) => <tr>{r.map((c) => <td>{c}</td>)}</tr>)}</tbody>
+        </table>
+      </div>
+    </section>
+  )}
+
+  <section class="section stack" id="ceny">
+    <div class="stack-sm"><span class="eyebrow">форматы и цены</span><h2 class="h2">{d.prices.title}</h2><p class="lead">{d.prices.lead ?? 'Цены без НДС 5%. Постоянным клиентам — скидка 10% на второй заказ и 15% с третьего.'}</p></div>
+    <div class="grid grid-4">
+      {d.prices.items.map((p) => (
+        <div class:list={['price', p.hot && 'price--hot']}>
+          <span class="price__name">{p.name}</span>
+          <span class="price__value">{p.value} {p.unit && <small>{p.unit}</small>}</span>
+          <ul>{p.points.map((x) => <li>{x}</li>)}</ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <Stages title={d.stages.title} lead={d.stages.lead} items={d.stages.items} />
+
+  {(cases.length > 0 || d.cases.extra?.length) && (
+    <section class="section section--ink stack">
+      <h2 class="giant">{d.cases.title ?? 'кейсы'}</h2>
+      <div class="grid grid-3">
+        {cases.map((c) => <CaseCard href={`/keisy/${c.id}/`} logo={c.data.logo} metric={c.data.metric} title={c.data.client} desc={c.data.summary} tags={[c.data.city]} />)}
+        {d.cases.extra?.map((c) => <CaseCard {...c} />)}
+      </div>
+      {d.cases.note && <p class="muted">{d.cases.note}</p>}
+    </section>
+  )}
+
+  <section class="section split">
+    <div class="stack"><span class="eyebrow">говорим прямо</span><h2 class="h2">Чего мы не обещаем</h2></div>
+    <ul class="checks crosses">{d.notPromise.map((x) => <li>{x}</li>)}</ul>
+  </section>
+
+  <section class="section section--mist stack">
+    <div class="stack-sm"><span class="eyebrow">связанные решения</span><h2 class="h2">{d.related.title}</h2></div>
+    <div class="grid grid-3">
+      {d.related.items.map((r) => <a class="card" href={r.href}><h3 class="h3">{r.title}</h3><p>{r.text}</p><span class="card__more">Подробнее →</span></a>)}
+    </div>
+  </section>
+
+  <Faq items={d.faq} title={d.faqTitle} />
+  <LeadForm topic={d.form.topic} title={d.form.title} lead={d.form.lead} />
+</Base>

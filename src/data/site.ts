@@ -32,6 +32,7 @@ export const services: NavItem[] = [
   { href: '/uslugi/marketingovaya-strategiya/', title: 'Маркетинговая стратегия', price: 'от 150 000 ₽', text: 'Позиционирование, каналы, бюджет и план заявок на год.' },
   { href: '/uslugi/ii-analitika-zvonkov/', title: 'ИИ-аналитика звонков', price: 'по запросу', text: 'Оценка 100% звонков колл-центра и администраторов, рейтинги и обучение.' },
   { href: '/uslugi/tehpodderzhka-sajtov/', title: 'Техподдержка сайтов', price: 'от 25 000 ₽/мес', text: 'Мониторинг, обновления, безопасность и SEO-гигиена.' },
+  { href: '/uslugi/reputaciya-i-geo/', title: 'Репутация и карты', price: 'от 10 000 ₽', text: 'Яндекс Карты, 2ГИС, Google Maps: карточки, отзывы, рейтинг филиалов.' },
 ];
 
 export const industries: NavItem[] = [
