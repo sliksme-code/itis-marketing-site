@@ -20,7 +20,7 @@ export const site = {
 export type NavItem = { href: string; title: string; short?: string; ready?: boolean; price?: string; text?: string };
 
 export const flagship: NavItem[] = [
-  { href: '/kompleksnyj-marketing/', title: 'Комплексный маркетинг под ключ', short: 'Под ключ', price: 'от 90 000 ₽/мес', text: 'Внешний отдел маркетинга: стратегия, каналы, аналитика и отчёт в одних руках.' },
+  { href: '/kompleksnyj-marketing/', title: 'Комплексный маркетинг', short: 'Комплексный маркетинг', price: 'от 90 000 ₽/мес', text: 'Внешний отдел маркетинга: стратегия, каналы, аналитика и отчёт в одних руках.' },
   { href: '/ii-marketolog/', title: 'ИИ-отдел маркетинга', short: 'ИИ-маркетолог', price: 'от 300 000 ₽/мес', text: 'Маркетолог и ИИ-агенты ведут SEO, контекст, контент и контроль звонков.' },
 ];
 
@@ -44,7 +44,7 @@ export const industries: NavItem[] = [
 ];
 
 export const mainNav: NavItem[] = [
-  { href: '/kompleksnyj-marketing/', title: 'Под ключ' },
+  { href: '/kompleksnyj-marketing/', title: 'Комплексный маркетинг' },
   { href: '/uslugi/', title: 'Услуги' },
   { href: '/otrasli/', title: 'Отрасли' },
   { href: '/keisy/', title: 'Кейсы' },
