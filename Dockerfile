@@ -20,6 +20,11 @@ COPY Caddyfile /etc/caddy/Caddyfile
 COPY --from=build /app/dist /srv
 COPY --from=lead /lead /lead
 COPY server/start.sh /start.sh
+# Настройки заявок. Timeweb может передать переменные и при сборке (build args), и при запуске —
+# так они работают в обоих случаях; значения при запуске имеют приоритет.
+ARG TG_BOT_TOKEN TG_CHAT_ID SMTP_HOST SMTP_PORT SMTP_USER SMTP_PASS LEAD_EMAIL_TO
+ENV TG_BOT_TOKEN=$TG_BOT_TOKEN TG_CHAT_ID=$TG_CHAT_ID SMTP_HOST=$SMTP_HOST SMTP_PORT=$SMTP_PORT \
+    SMTP_USER=$SMTP_USER SMTP_PASS=$SMTP_PASS LEAD_EMAIL_TO=$LEAD_EMAIL_TO
 RUN chmod +x /start.sh
 EXPOSE 80
 CMD ["/start.sh"]
