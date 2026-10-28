@@ -30,7 +30,106 @@
 	redir /registration              /kontakty/ 301
 	redir /case                      /keisy/ 301
 	redir /bazaznaniy                /blog/ 301
-	# Статьи базы знаний: пока на /blog/, после переноса — по одной на новый адрес
+	# Статьи старой базы знаний → новые адреса в блоге (по одной на статью)
+	redir /bazaznaniy/010623 /blog/medicinskij-kopirajting-kak-sozdat-effektivnyj-tekstovoj-kontent-dlya/ 301
+	redir /bazaznaniy/010623/ /blog/medicinskij-kopirajting-kak-sozdat-effektivnyj-tekstovoj-kontent-dlya/ 301
+	redir /bazaznaniy/020623 /blog/privlechenie-lidov-kak-najti-svoih-klientov-v-it/ 301
+	redir /bazaznaniy/020623/ /blog/privlechenie-lidov-kak-najti-svoih-klientov-v-it/ 301
+	redir /bazaznaniy/020623-2 /blog/kak-ispolzovat-chat-boty-dlya-biznesa/ 301
+	redir /bazaznaniy/020623-2/ /blog/kak-ispolzovat-chat-boty-dlya-biznesa/ 301
+	redir /bazaznaniy/020623-3 /blog/pochemu-ne-rabotaet-5-oshibok-prodvizheniya-salona-krasoty-v-instagram/ 301
+	redir /bazaznaniy/020623-3/ /blog/pochemu-ne-rabotaet-5-oshibok-prodvizheniya-salona-krasoty-v-instagram/ 301
+	redir /bazaznaniy/020623-4 /blog/kak-obespechit-pritok-klientov-v-kliniku-pri-pomoshchi/ 301
+	redir /bazaznaniy/020623-4/ /blog/kak-obespechit-pritok-klientov-v-kliniku-pri-pomoshchi/ 301
+	redir /bazaznaniy/020623-5 /blog/kto-moya-celevaya-auditoriya-poisk-klientov-v-sfere-obrazovatelnyh/ 301
+	redir /bazaznaniy/020623-5/ /blog/kto-moya-celevaya-auditoriya-poisk-klientov-v-sfere-obrazovatelnyh/ 301
+	redir /bazaznaniy/020623-6 /blog/shablony-postov-v-instagram-nuzhny-ili-net/ 301
+	redir /bazaznaniy/020623-6/ /blog/shablony-postov-v-instagram-nuzhny-ili-net/ 301
+	redir /bazaznaniy/020623-7 /blog/marketing-v-obrazovanii-5-sposobov-uvelichit-prodazhi/ 301
+	redir /bazaznaniy/020623-7/ /blog/marketing-v-obrazovanii-5-sposobov-uvelichit-prodazhi/ 301
+	redir /bazaznaniy/020623-8 /blog/5-osnovnyh-etapov-seo-prodvizheniya-dlya-med-kompanij/ 301
+	redir /bazaznaniy/020623-8/ /blog/5-osnovnyh-etapov-seo-prodvizheniya-dlya-med-kompanij/ 301
+	redir /bazaznaniy/050623 /blog/5-offlajn-i-onlajn-sposobov-prodvizheniya-vashej-shkoly/ 301
+	redir /bazaznaniy/050623/ /blog/5-offlajn-i-onlajn-sposobov-prodvizheniya-vashej-shkoly/ 301
+	redir /bazaznaniy/050623-2 /blog/5-vidov-didzhital-marketinga-dlya-sfery-byuti/ 301
+	redir /bazaznaniy/050623-2/ /blog/5-vidov-didzhital-marketinga-dlya-sfery-byuti/ 301
+	redir /bazaznaniy/050623-3 /blog/reklama-v-media-dlya-klinik-rabotaem-nad-uvelicheniem-loyalnosti/ 301
+	redir /bazaznaniy/050623-3/ /blog/reklama-v-media-dlya-klinik-rabotaem-nad-uvelicheniem-loyalnosti/ 301
+	redir /bazaznaniy/050623-4 /blog/luchshie-instrumenty-v-prodvizhenii-soc-setej-dlya-sfery-obrazovaniya/ 301
+	redir /bazaznaniy/050623-4/ /blog/luchshie-instrumenty-v-prodvizhenii-soc-setej-dlya-sfery-obrazovaniya/ 301
+	redir /bazaznaniy/050623-5 /blog/10-oshibok-v-it-prodazhah/ 301
+	redir /bazaznaniy/050623-5/ /blog/10-oshibok-v-it-prodazhah/ 301
+	redir /bazaznaniy/050623-6 /blog/inflyuenser-marketing-zachem-on-nuzhen-i-kak-s-nim-rabotat/ 301
+	redir /bazaznaniy/050623-6/ /blog/inflyuenser-marketing-zachem-on-nuzhen-i-kak-s-nim-rabotat/ 301
+	redir /bazaznaniy/050623-7 /blog/chto-est-unikalnoe-torgovoe-predlozhenie-i-kak-ego-razrabotat/ 301
+	redir /bazaznaniy/050623-7/ /blog/chto-est-unikalnoe-torgovoe-predlozhenie-i-kak-ego-razrabotat/ 301
+	redir /bazaznaniy/050623-8 /blog/kak-sohranit-starogo-klienta-i-privlech-novogo-preimushchestva/ 301
+	redir /bazaznaniy/050623-8/ /blog/kak-sohranit-starogo-klienta-i-privlech-novogo-preimushchestva/ 301
+	redir /bazaznaniy/060623 /blog/5-etapov-sozdaniya-kontent-strategii-dlya-vashej-kliniki/ 301
+	redir /bazaznaniy/060623/ /blog/5-etapov-sozdaniya-kontent-strategii-dlya-vashej-kliniki/ 301
+	redir /bazaznaniy/060623-2 /blog/znachimost-platnoj-reklamy-v-prodvizhenii-vashego-byuti-produkta/ 301
+	redir /bazaznaniy/060623-2/ /blog/znachimost-platnoj-reklamy-v-prodvizhenii-vashego-byuti-produkta/ 301
+	redir /bazaznaniy/060623-3 /blog/fotoshop-vs-realnost-kak-ne-oshibitsya-s-prodvizheniem-v-byuti/ 301
+	redir /bazaznaniy/060623-3/ /blog/fotoshop-vs-realnost-kak-ne-oshibitsya-s-prodvizheniem-v-byuti/ 301
+	redir /bazaznaniy/060623-4 /blog/kak-sozdat-horoshij-sajt-dlya-shkoly-v-2023-godu/ 301
+	redir /bazaznaniy/060623-4/ /blog/kak-sozdat-horoshij-sajt-dlya-shkoly-v-2023-godu/ 301
+	redir /bazaznaniy/060623-5 /blog/kak-byvshij-uchenik-pomozhet-vam-v-budushchem-ili-znachimost-otzyvov/ 301
+	redir /bazaznaniy/060623-5/ /blog/kak-byvshij-uchenik-pomozhet-vam-v-budushchem-ili-znachimost-otzyvov/ 301
+	redir /bazaznaniy/060623-6 /blog/5-glavnyh-aspektov-prodvizheniya-it-proekta-v-soc-setyah/ 301
+	redir /bazaznaniy/060623-6/ /blog/5-glavnyh-aspektov-prodvizheniya-it-proekta-v-soc-setyah/ 301
+	redir /bazaznaniy/060623-7 /blog/7-uspeshnyh-kejsov-marketinga-it-kompanij-v-rossii-i-za-rubezhom/ 301
+	redir /bazaznaniy/060623-7/ /blog/7-uspeshnyh-kejsov-marketinga-it-kompanij-v-rossii-i-za-rubezhom/ 301
+	redir /bazaznaniy/160623 /blog/brending-v-zdravoohranenii-kak-sozdat-svoj-brend/ 301
+	redir /bazaznaniy/160623/ /blog/brending-v-zdravoohranenii-kak-sozdat-svoj-brend/ 301
+	redir /bazaznaniy/200623 /blog/6-luchshih-marketingovyh-kanalov-dlya-vashego-med-uchrezhdeniya/ 301
+	redir /bazaznaniy/200623/ /blog/6-luchshih-marketingovyh-kanalov-dlya-vashego-med-uchrezhdeniya/ 301
+	redir /bazaznaniy/200623-2 /blog/sposobna-li-virtualnaya-realnost-pomoch-byuti-marketingu/ 301
+	redir /bazaznaniy/200623-2/ /blog/sposobna-li-virtualnaya-realnost-pomoch-byuti-marketingu/ 301
+	redir /bazaznaniy/270623 /blog/4-aktualnyh-priema-byuti-marketinga-v-2023-godu/ 301
+	redir /bazaznaniy/270623/ /blog/4-aktualnyh-priema-byuti-marketinga-v-2023-godu/ 301
+	redir /bazaznaniy/300623 /blog/seo-teksty-nuzhno-li-optimizirovat-stati-na-obrazovatelnom-sajte/ 301
+	redir /bazaznaniy/300623/ /blog/seo-teksty-nuzhno-li-optimizirovat-stati-na-obrazovatelnom-sajte/ 301
+	redir /bazaznaniy/040723 /blog/5-kejsov-prodvizheniya-kursov-s-pomoshchyu-email-marketinga/ 301
+	redir /bazaznaniy/040723/ /blog/5-kejsov-prodvizheniya-kursov-s-pomoshchyu-email-marketinga/ 301
+	redir /bazaznaniy/070723 /blog/marketingovye-roli-v-it-kakie-specialisty-pomogut-s-prodvizheniem/ 301
+	redir /bazaznaniy/070723/ /blog/marketingovye-roli-v-it-kakie-specialisty-pomogut-s-prodvizheniem/ 301
+	redir /bazaznaniy/110723 /blog/pochemu-vashej-it-kompanii-nuzhen-produktovyj-marketolog/ 301
+	redir /bazaznaniy/110723/ /blog/pochemu-vashej-it-kompanii-nuzhen-produktovyj-marketolog/ 301
+	redir /bazaznaniy/150823 /blog/kontent-marketing-dlya-byuti-shkoly-gde-razmeshchat-kontent/ 301
+	redir /bazaznaniy/150823/ /blog/kontent-marketing-dlya-byuti-shkoly-gde-razmeshchat-kontent/ 301
+	redir /bazaznaniy/180823 /blog/it-marketing-kak-pravilno-raspredelit-byudzhety/ 301
+	redir /bazaznaniy/180823/ /blog/it-marketing-kak-pravilno-raspredelit-byudzhety/ 301
+	redir /bazaznaniy/220823 /blog/zachem-sajtu-kliniki-seo-optimizaciya/ 301
+	redir /bazaznaniy/220823/ /blog/zachem-sajtu-kliniki-seo-optimizaciya/ 301
+	redir /bazaznaniy/250823 /blog/sledim-za-rezultatami-kak-ponyat-chto-vasha-byuti-kampaniya-rabotaet/ 301
+	redir /bazaznaniy/250823/ /blog/sledim-za-rezultatami-kak-ponyat-chto-vasha-byuti-kampaniya-rabotaet/ 301
+	redir /bazaznaniy/290823 /blog/5-klyuchevyh-trendov-v-it-marketinge/ 301
+	redir /bazaznaniy/290823/ /blog/5-klyuchevyh-trendov-v-it-marketinge/ 301
+	redir /bazaznaniy/010923 /blog/rabota-nad-oshibkami-kak-otvechat-na-negativnye-otzyvy-o-vashej/ 301
+	redir /bazaznaniy/010923/ /blog/rabota-nad-oshibkami-kak-otvechat-na-negativnye-otzyvy-o-vashej/ 301
+	redir /bazaznaniy/050923 /blog/onlajn-reputaciya-shkoly-kak-uluchshit/ 301
+	redir /bazaznaniy/050923/ /blog/onlajn-reputaciya-shkoly-kak-uluchshit/ 301
+	redir /bazaznaniy/080923 /blog/medicinskij-marketing-est-li-smysl-platit-za-reklamu/ 301
+	redir /bazaznaniy/080923/ /blog/medicinskij-marketing-est-li-smysl-platit-za-reklamu/ 301
+	redir /bazaznaniy/120923 /blog/kompleksnoe-prodvizhenie-uslug-chto-eto-takoe-i-stoit-li-zadumatsya/ 301
+	redir /bazaznaniy/120923/ /blog/kompleksnoe-prodvizhenie-uslug-chto-eto-takoe-i-stoit-li-zadumatsya/ 301
+	redir /bazaznaniy/150923 /blog/vazhnost-prodayushchego-sajta-dlya-vashego-startapa/ 301
+	redir /bazaznaniy/150923/ /blog/vazhnost-prodayushchego-sajta-dlya-vashego-startapa/ 301
+	redir /bazaznaniy/190923 /blog/kak-razrabotat-marketingovuyu-strategiyu-dlya-kliniki/ 301
+	redir /bazaznaniy/190923/ /blog/kak-razrabotat-marketingovuyu-strategiyu-dlya-kliniki/ 301
+	redir /bazaznaniy/220923 /blog/kak-privlech-molodoe-pokolenie-v-vashu-kliniku/ 301
+	redir /bazaznaniy/220923/ /blog/kak-privlech-molodoe-pokolenie-v-vashu-kliniku/ 301
+	redir /bazaznaniy/250923 /blog/kak-optimizirovat-sajt-vashej-shkoly/ 301
+	redir /bazaznaniy/250923/ /blog/kak-optimizirovat-sajt-vashej-shkoly/ 301
+	redir /bazaznaniy/290923 /blog/rassylki-ne-rabotayut-kak-zavlech-klienta-v-kliniku-elektronnym-pismom/ 301
+	redir /bazaznaniy/290923/ /blog/rassylki-ne-rabotayut-kak-zavlech-klienta-v-kliniku-elektronnym-pismom/ 301
+	redir /bazaznaniy/31023 /blog/kak-it-biznesu-ne-poteryat-auditoriyu-v-2023-godu/ 301
+	redir /bazaznaniy/31023/ /blog/kak-it-biznesu-ne-poteryat-auditoriyu-v-2023-godu/ 301
+	redir /bazaznaniy/61023 /blog/5-sovremennyh-tendencij-v-marketinge-medicinskih-uslug/ 301
+	redir /bazaznaniy/61023/ /blog/5-sovremennyh-tendencij-v-marketinge-medicinskih-uslug/ 301
+	redir /bazaznaniy/101023 /blog/v-kakuyu-socialnuyu-set-stoit-vkladyvatsya-it-biznesu-v-2023-godu/ 301
+	redir /bazaznaniy/101023/ /blog/v-kakuyu-socialnuyu-set-stoit-vkladyvatsya-it-biznesu-v-2023-godu/ 301
+	# Остальные адреса базы знаний — на блог
 	redir /bazaznaniy/*              /blog/ 301
 	redir /courses/*                 /blog/ 301
 

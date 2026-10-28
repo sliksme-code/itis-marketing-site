@@ -274,3 +274,5 @@ a.case:hover .case__title { color: var(--color-accent-text); }
 .form__status[data-state='ok'] { background: #2e5d43; }
 .form__status[data-state='error'] { background: #6b2a20; }
 .btn[disabled] { opacity: .7; cursor: wait; }
+
+.prose img { border-radius: var(--radius-md); margin: 18px 0; width: 100%; height: auto; }
