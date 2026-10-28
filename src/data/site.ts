@@ -12,7 +12,7 @@ export const site = {
   cities: ['Москва', 'Казань'],
   founded: 2015,
   // ID счётчика Яндекс Метрики. Пусто — счётчик не подключается.
-  metrikaId: '',
+  metrikaId: '74484220',
   // Куда отправляется форма заявки: приёмник server/lead.mjs шлёт её в Telegram-бот и на почту.
   leadEndpoint: '/api/lead',
 };
