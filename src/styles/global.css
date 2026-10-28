@@ -268,3 +268,9 @@ a.case:hover .case__title { color: var(--color-accent-text); }
 .crumbs li { min-width: 0; max-width: 100%; }
 /* Вложенные .wrap не центрируются через margin:auto — иначе ширина считается по содержимому */
 .wrap .wrap { width: 100%; max-width: none; margin: 0; }
+
+/* Сообщение после отправки формы */
+.form__status { border-radius: var(--radius-md); padding: 16px 20px; font-weight: 600; background: var(--color-ink-2); color: #fff; }
+.form__status[data-state='ok'] { background: #2e5d43; }
+.form__status[data-state='error'] { background: #6b2a20; }
+.btn[disabled] { opacity: .7; cursor: wait; }

@@ -1,8 +1,8 @@
 ---
-// Форма заявки. Работает без JS как обычная форма. Пока не подключён приём заявок
-// (site.leadEndpoint пуст), отправка открывает Telegram с текстом заявки.
+// Форма заявки. Отправляет данные на /api/lead (server/lead.mjs) — оттуда заявка уходит
+// в Telegram-бот и на почту. С JavaScript — без перезагрузки, с сообщением об успехе;
+// без JavaScript — обычная отправка формы и переход на /spasibo/.
 import { site } from '../data/site';
-import Button from './Button.astro';
 interface Props { title?: string; lead?: string; topic?: string }
 const { title = 'Рассчитаем проект за 1 рабочий день', lead = 'Ответим в течение часа в рабочее время. Сначала — 45-минутный разбор задачи, потом смета.', topic = 'Сайт' } = Astro.props;
 ---
@@ -11,24 +11,56 @@ const { title = 'Рассчитаем проект за 1 рабочий ден�
     <h2 class="h2">{title}</h2>
     <p class="lead">{lead}</p>
   </div>
-  <form class="form" method="post" action={site.leadEndpoint || site.telegram} data-telegram={site.telegram} data-endpoint={site.leadEndpoint}>
+  <form class="form" method="post" action={site.leadEndpoint} data-lead-form data-metrika={site.metrikaId}>
     <input type="hidden" name="topic" value={topic} />
-    <div class="field"><label for="lead-name">Имя</label><input id="lead-name" name="name" placeholder="Имя" autocomplete="name" required /></div>
-    <div class="field"><label for="lead-phone">Телефон</label><input id="lead-phone" name="phone" type="tel" placeholder="+7 (999) 999-99-99" autocomplete="tel" required /></div>
-    <div class="field"><label for="lead-task">Задача</label><input id="lead-task" name="task" placeholder="Задача или сайт" /></div>
-    <button class="btn btn--primary" type="submit"><span>Рассчитать проект</span><span class="btn__chip" aria-hidden="true"></span></button>
+    <input type="hidden" name="page" value="" />
+    <input type="hidden" name="utm" value="" />
+    <div class="field" aria-hidden="true" style="position:absolute;left:-9999px"><label for="lead-website">Сайт</label><input id="lead-website" name="website" tabindex="-1" autocomplete="off" /></div>
+    <div class="field"><label for="lead-name">Имя</label><input id="lead-name" name="name" placeholder="Имя" autocomplete="name" required maxlength="100" /></div>
+    <div class="field"><label for="lead-phone">Телефон</label><input id="lead-phone" name="phone" type="tel" placeholder="+7 (999) 999-99-99" autocomplete="tel" required minlength="10" maxlength="40" /></div>
+    <div class="field"><label for="lead-task">Задача</label><input id="lead-task" name="task" placeholder="Задача или сайт" maxlength="1000" /></div>
+    <button class="btn btn--primary" type="submit"><span data-label>Рассчитать проект</span><span class="btn__chip" aria-hidden="true"></span></button>
   </form>
-  <p class="form__note">Нажимая кнопку, вы соглашаетесь с <a href="/privacy-policy/">политикой конфиденциальности</a>. Быстрее всего — <a href={site.telegram}>написать в Telegram</a> или позвонить: <a href={site.phoneHref}>{site.phone}</a>.</p>
+  <p class="form__status" role="status" aria-live="polite" hidden></p>
+  <p class="form__note">Нажимая кнопку, вы соглашаетесь с <a href="/privacy-policy/">политикой обработки персональных данных</a>. Быстрее всего — <a href={site.telegram}>написать в Telegram</a> или позвонить: <a href={site.phoneHref}>{site.phone}</a>.</p>
 </section>
 <script>
-  // Временная отправка: пока нет приёмника заявок, переводим в Telegram.
-  document.querySelectorAll<HTMLFormElement>('form[data-telegram]').forEach((f) => {
-    if (f.dataset.endpoint) return;
-    f.addEventListener('submit', (e) => {
+  document.querySelectorAll<HTMLFormElement>('form[data-lead-form]').forEach((f) => {
+    const status = f.parentElement!.querySelector<HTMLElement>('.form__status')!;
+    const label = f.querySelector<HTMLElement>('[data-label]')!;
+    const btn = f.querySelector<HTMLButtonElement>('button[type=submit]')!;
+    // Страница и метки рекламы попадают в заявку — видно, откуда пришёл клиент.
+    (f.elements.namedItem('page') as HTMLInputElement).value = location.pathname;
+    const utm = new URLSearchParams(location.search);
+    (f.elements.namedItem('utm') as HTMLInputElement).value =
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term'].map((k) => utm.get(k)).filter(Boolean).join(' / ') || document.referrer;
+
+    f.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const d = new FormData(f);
-      const text = `Заявка с сайта (${d.get('topic')}): ${d.get('name')}, ${d.get('phone')}. ${d.get('task') || ''}`;
-      window.open(`${f.dataset.telegram}?text=${encodeURIComponent(text)}`, '_blank');
+      btn.disabled = true;
+      label.textContent = 'Отправляем…';
+      status.hidden = true;
+      try {
+        const r = await fetch(f.action, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(Object.fromEntries(new FormData(f))),
+        });
+        const res = await r.json().catch(() => ({ ok: false }));
+        if (!r.ok || !res.ok) throw new Error(res.error || 'Ошибка отправки');
+        f.reset();
+        status.textContent = 'Спасибо! Заявка отправлена — свяжемся с вами в течение часа в рабочее время.';
+        status.dataset.state = 'ok';
+        const ym = (window as any).ym;
+        if (ym && f.dataset.metrika) ym(Number(f.dataset.metrika), 'reachGoal', 'lead');
+      } catch (err) {
+        status.textContent = `${(err as Error).message}. Напишите нам в Telegram или позвоните — ответим сразу.`;
+        status.dataset.state = 'error';
+      } finally {
+        status.hidden = false;
+        btn.disabled = false;
+        label.textContent = 'Рассчитать проект';
+      }
     });
   });
 </script>

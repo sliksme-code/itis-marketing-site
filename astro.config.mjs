@@ -16,7 +16,7 @@ export default defineConfig({
   build: { format: 'directory' },
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/404') && !draftCases.some((p) => page.endsWith(p)),
+      filter: (page) => !page.includes('/404') && !page.includes('/spasibo') && !draftCases.some((p) => page.endsWith(p)),
       changefreq: 'weekly',
     }),
   ],

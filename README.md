@@ -1,6 +1,6 @@
 # itis.marketing — сайт агентства
 
-Статический сайт на [Astro](https://astro.build): каждая страница собирается в готовый HTML, который поисковые роботы читают без JavaScript. Отдаёт сайт веб-сервер Caddy с 301-редиректами со старых адресов Tilda.
+Статический сайт на [Astro](https://astro.build): каждая страница собирается в готовый HTML, который поисковые роботы читают без JavaScript. Отдаёт сайт веб-сервер Caddy с 301-редиректами со старых адресов Tilda; заявки с форм принимает небольшой Node-сервис в том же контейнере и пересылает в Telegram и на почту.
 
 ## Как устроено
 
@@ -14,6 +14,7 @@
 | `src/components/` | Блоки дизайн-системы: кнопки, FAQ, этапы, кейсы, форма заявки, хлебные крошки |
 | `src/styles/global.css` | Токены и стили дизайн-системы «itis— маркетинг» |
 | `Caddyfile` | Редиректы 301 со старых URL, 410 для удалённых страниц, кэш, сжатие |
+| `server/lead.mjs` | Приём заявок с формы → Telegram-бот и почта. Настройка: [docs/zayavki.md](docs/zayavki.md) |
 | `scripts/check-html.mjs` | Проверка перед деплоем: один H1, title, description, canonical, текст в HTML, валидный JSON-LD |
 
 SEO из коробки: ЧПУ со слэшем на конце, canonical, Open Graph, sitemap-index.xml, robots.txt, Schema.org (Organization, Service, BreadcrumbList, FAQPage, Article).
@@ -42,7 +43,7 @@ node scripts/check-links.mjs # битые внутренние ссылки
 ## Перед запуском
 
 - [ ] Заполнить `metrikaId` в `src/data/site.ts`
-- [ ] Подключить приём заявок (`leadEndpoint`: вебхук amoCRM) — сейчас форма открывает Telegram
+- [ ] Подключить Telegram-бот и почту для заявок — инструкция [docs/zayavki.md](docs/zayavki.md)
 - [ ] Заменить метки «данные уточняются» в кейсах и снять `draft: true`
 - [ ] Перенести 47 статей старой базы знаний (выгрузка из Tilda) и прописать редиректы по одной
 - [ ] Утвердить цены «от» (черновик прайса 2026)

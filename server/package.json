@@ -1,0 +1,9 @@
+{
+  "name": "itis-lead-server",
+  "private": true,
+  "type": "module",
+  "description": "Приём заявок с сайта: Telegram-бот + e-mail",
+  "dependencies": {
+    "nodemailer": "10.1.0"
+  }
+}

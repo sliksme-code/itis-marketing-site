@@ -3,3 +3,4 @@ dist/
 .astro/
 .DS_Store
 .env
+server/node_modules/

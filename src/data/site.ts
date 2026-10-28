@@ -13,8 +13,8 @@ export const site = {
   founded: 2015,
   // ID счётчика Яндекс Метрики. Пусто — счётчик не подключается.
   metrikaId: '',
-  // Куда отправляется форма заявки (вебхук amoCRM / функция). Пусто — форма открывает Telegram.
-  leadEndpoint: '',
+  // Куда отправляется форма заявки: приёмник server/lead.mjs шлёт её в Telegram-бот и на почту.
+  leadEndpoint: '/api/lead',
 };
 
 export type NavItem = { href: string; title: string; short?: string; ready?: boolean; price?: string; text?: string };

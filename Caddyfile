@@ -41,6 +41,13 @@
 	}
 	redir @noslash {path}/ 301
 
+	# --- приём заявок: форма → server/lead.mjs → Telegram-бот и почта ---
+	handle /api/* {
+		reverse_proxy 127.0.0.1:3000 {
+			header_up X-Forwarded-For {remote_host}
+		}
+	}
+
 	# --- кэш: ассеты Astro с хешем — год, HTML — без кэша ---
 	@assets path /_astro/* /img/*
 	header @assets Cache-Control "public, max-age=31536000, immutable"

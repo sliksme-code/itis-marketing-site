@@ -19,10 +19,10 @@ for (const f of files) {
   if (!f.endsWith('404.html') && !html.includes('rel="canonical"')) problems.push('нет canonical');
   const text = html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<[^>]+>/g, ' ').replace(/\s+/g, ' ');
   const words = text.split(' ').length;
-  if (!f.endsWith('404.html') && words < 150) problems.push(`мало текста в HTML (${words} слов)`);
+  const noindex = html.includes('noindex');
+  if (!noindex && words < 150) problems.push(`мало текста в HTML (${words} слов)`);
   for (const m of html.matchAll(/ld\+json">([\s\S]*?)<\/script>/g)) { try { JSON.parse(m[1]); } catch { problems.push('битый JSON-LD'); } }
-  const draft = html.includes('noindex');
-  console.log(`${problems.length ? '✗' : '✓'} ${f.replace('dist', '')} — ${words} слов${draft ? ', noindex' : ''}${problems.length ? ' — ' + problems.join('; ') : ''}`);
+  console.log(`${problems.length ? '✗' : '✓'} ${f.replace('dist', '')} — ${words} слов${noindex ? ', noindex' : ''}${problems.length ? ' — ' + problems.join('; ') : ''}`);
   errors += problems.length;
 }
 process.exit(errors ? 1 : 0);
