@@ -62,6 +62,20 @@ const tones = ['section--coral', 'card--ink', 'card--mist'];
     </div>
   </section>
 
+  {d.illustrations && (
+    <section class="section section--mist stack">
+      <div class="stack-sm">{d.illustrations.eyebrow && <span class="eyebrow">{d.illustrations.eyebrow}</span>}<h2 class="h2">{d.illustrations.title}</h2>{d.illustrations.lead && <p class="lead">{d.illustrations.lead}</p>}</div>
+      <div class:list={['illu-grid', d.illustrations.items.length > 1 && 'illu-grid--2']}>
+        {d.illustrations.items.map((im) => (
+          <figure class="illu">
+            <picture>{im.srcSmall && <source media="(max-width: 700px)" srcset={im.srcSmall} />}<img src={im.src} alt={im.alt} width={im.w} height={im.h} loading="lazy" decoding="async" /></picture>
+            {im.caption && <figcaption>{im.caption}</figcaption>}
+          </figure>
+        ))}
+      </div>
+    </section>
+  )}
+
   <section class="section section--ink stack">
     <div class="stack-sm"><span class="eyebrow">{d.problems.eyebrow}</span><h2 class="h2">{d.problems.title}</h2></div>
     <div class="grid grid-4">

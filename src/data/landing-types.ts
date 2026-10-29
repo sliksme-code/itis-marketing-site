@@ -21,6 +21,7 @@ export type Landing = {
   pricePill?: string;
   heroStats: Stat[];           // 2–3 цифры справа от заголовка
   heroNote?: string;
+  illustrations?: { eyebrow?: string; title: string; lead?: string; items: { src: string; srcSmall?: string; w: number; h: number; alt: string; caption?: string }[] };
   problems: { eyebrow: string; title: string; items: Item[] };
   includes: { eyebrow: string; title: string; lead?: string; items: Item[]; accentLast?: boolean };
   value: { title: string; items: { title: string; text: string }[] };

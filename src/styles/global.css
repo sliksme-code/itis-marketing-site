@@ -286,3 +286,12 @@ a.case:hover .case__title { color: var(--color-accent-text); }
 .founder__stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .founder__stats .stat { min-height: 0; padding: 22px; gap: 12px; }
 @media (max-width: 700px) { .founder__stats { grid-template-columns: minmax(0, 1fr); } }
+
+/* Иллюстрации ИИ-офиса */
+.ai-split { align-items: center; }
+.ai-illu, .illu img { width: 100%; height: auto; display: block; }
+.illu-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+.illu-grid--2 { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: end; }
+.illu { margin: 0; display: flex; flex-direction: column; gap: 12px; }
+.illu figcaption { font-weight: 600; color: var(--ink-a60); }
+@media (max-width: 900px) { .illu-grid--2 { grid-template-columns: minmax(0, 1fr); } }
