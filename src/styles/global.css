@@ -47,7 +47,7 @@ body {
 img { max-width: 100%; display: block; height: auto; }
 a { color: inherit; }
 p { margin: 0; }
-h1, h2, h3, h4 { margin: 0; font-weight: 800; letter-spacing: var(--tracking-tight); line-height: 1; overflow-wrap: break-word; hyphens: auto; }
+h1, h2, h3, h4 { margin: 0; font-weight: 800; letter-spacing: var(--tracking-tight); line-height: 1; overflow-wrap: break-word; hyphens: none; }
 :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
 
 .skip { position: absolute; left: -9999px; }

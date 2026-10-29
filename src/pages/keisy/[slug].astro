@@ -30,7 +30,7 @@ const ld = {
     <div class="split">
       <div class="stack">
         {d.logo && <img src={d.logo} alt={`Логотип: ${d.client}`} width="160" height="120" style="width:160px;height:120px;object-fit:contain;object-position:left" />}
-        <h1 class="h1" style="font-size:clamp(30px,3.4vw,48px);line-height:1">{d.title}</h1>
+        <h1 class="h1" style="font-size:clamp(26px,3.4vw,48px);line-height:1">{d.title}</h1>
         <div class="pills">
           <span class="pill">{d.city}</span>
           {!d.period.includes('[') && <span class="pill">Срок: {d.period}</span>}
