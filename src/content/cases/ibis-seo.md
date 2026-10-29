@@ -4,7 +4,7 @@ seoTitle: "Кейс: продвижение сети клиник «Ибис» �
 description: "Сеть клиник «Ибис»: с момента запуска развили SEO в Яндексе и Google, Яндекс Карты и Google Maps, контекстную рекламу, ПроДокторов и DocDoc — трафик и заявки выросли в 11 раз, ТОП в 12 городах."
 client: "Сеть клиник «Ибис»"
 industry: "medicina"
-services: ["seo-prodvizhenie", "kontekstnaya-reklama", "reputaciya-i-geo"]
+services: ["seo-prodvizhenie", "kontekstnaya-reklama", "geo-marketing"]
 city: "Казань, Москва и 10 городов"
 period: "с момента запуска"
 logo: "/img/logo-ibis.webp"

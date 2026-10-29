@@ -5,7 +5,7 @@ description: "Комплексный аудит маркетинговых ка�
 client: "Сеть клиник «Ариадна»"
 logo: "/img/logo-ariadna-ii-analitika.webp"
 industry: "medicina"
-services: ["marketingovaya-strategiya", "ii-analitika-zvonkov"]
+services: ["marketingovyj-konsalting", "marketingovaya-strategiya", "ii-analitika-zvonkov"]
 city: "Москва, Санкт-Петербург, Казань, Курган"
 period: "[__]"
 metric: "4 города"

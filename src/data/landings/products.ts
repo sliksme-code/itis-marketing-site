@@ -37,7 +37,7 @@ export const kompleks: Landing = {
       { title: 'SEO', text: 'Рост заявок из поиска Яндекса и Google.', href: '/uslugi/seo-prodvizhenie/' },
       { title: 'Контекстная реклама', text: 'Яндекс Директ с контролем стоимости заявки.', href: '/uslugi/kontekstnaya-reklama/' },
       { title: 'Сайт и лендинги', text: 'Доработки, новые страницы, техподдержка.', href: '/uslugi/razrabotka-sajtov/' },
-      { title: 'Репутация и карты', text: 'Яндекс Карты, 2ГИС, отзывы и рейтинг.', href: '/uslugi/reputaciya-i-geo/' },
+      { title: 'Гео-маркетинг', text: 'Карты, филиалы, отзывы и рейтинг.', href: '/uslugi/geo-marketing/' },
       { title: 'Таргет, Telegram, Авито', text: 'Дополнительные каналы — когда они окупаются в вашей нише.' },
       { title: 'Сквозная аналитика', text: 'Метрика, коллтрекинг, CRM — стоимость заявки и клиента по каждому каналу.' },
       { title: 'Маркетолог и отчёт', text: 'Ответственный маркетолог, еженедельный статус, отчёт до 5 числа и сессия по итогам месяца.' },
@@ -82,7 +82,7 @@ export const kompleks: Landing = {
     ],
   },
   cases: {
-    ids: ['trakresurs-region', 'my-corner-zayavki', 'kama-kapital-issledovanie', 'innopolis-cifrovaya-infrastruktura', 'suvarstroit-audit', 'tatsotsbank-seo-karty'], title: 'кейсы',
+    ids: ['portos-barbershopy', 'klinika-kurpatova', 'ibis-seo', 'trakresurs-region', 'my-corner-zayavki', 'tatsotsbank-seo-karty'], title: 'кейсы',
   },
   notPromise: [
     'Рост без вашего участия: нужны доступы, ответы на вопросы и согласование материалов — раз в неделю.',

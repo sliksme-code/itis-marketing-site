@@ -44,7 +44,7 @@ export const industryPages: Landing[] = [
       items: [
         { title: 'Контекстная реклама', text: 'Кампании по моделям, сервису и trade-in с контролем стоимости заявки.', href: '/uslugi/kontekstnaya-reklama/', tag: 'реклама' },
         { title: 'SEO', text: 'Страницы моделей, услуг сервиса и филиалов в поиске Яндекса.', href: '/uslugi/seo-prodvizhenie/', tag: 'SEO' },
-        { title: 'Карты и отзывы', text: 'Рейтинг дилерских центров и сервисов на Яндекс Картах и 2ГИС.', href: '/uslugi/reputaciya-i-geo/', tag: 'карты' },
+        { title: 'Карты и отзывы', text: 'Рейтинг дилерских центров и сервисов на Яндекс Картах и 2ГИС.', href: '/uslugi/geo-marketing/', tag: 'карты' },
         { title: 'Сайт и лендинги', text: 'Лендинги под модели, акции и сервис с онлайн-записью.', href: '/uslugi/razrabotka-sajtov/', tag: 'сайт' },
         { title: 'ИИ-аналитика звонков', text: 'Контроль менеджеров и сервис-консультантов по каждому звонку.', href: '/uslugi/ii-analitika-zvonkov/', tag: 'ИИ' },
         { title: 'ИИ-агенты для заявок', text: 'Мгновенный ответ на заявки из всех каналов, квалификация и запись в CRM.', href: '/ii-marketolog/', tag: 'ИИ' },
@@ -202,7 +202,7 @@ export const industryPages: Landing[] = [
       items: [
         { title: 'Исследования и бренд', text: 'Рынок, конкуренты, бизнес-модели объекта, платформа бренда ЖК и стратегия выхода на рынок.', href: '/uslugi/marketingovye-issledovaniya/', tag: 'данные' },
         { title: 'Контекстная реклама', text: 'Кампании по объектам и планировкам с контролем стоимости заявки.', href: '/uslugi/kontekstnaya-reklama/', tag: 'реклама' },
-        { title: 'Репутация и карты', text: 'Отзывы и рейтинг застройщика и офисов продаж.', href: '/uslugi/reputaciya-i-geo/', tag: 'карты' },
+        { title: 'Гео-маркетинг', text: 'Отзывы и рейтинг застройщика и офисов продаж.', href: '/uslugi/geo-marketing/', tag: 'карты' },
         { title: 'Сайт и лендинги', text: 'Сайт ЖК, выбор планировок, ипотечный калькулятор.', href: '/uslugi/razrabotka-sajtov/', tag: 'сайт' },
         { title: 'Telegram и Авито', text: 'Посевы в тематических каналах, объявления и обработка обращений.', tag: 'каналы' },
         { title: 'Комплексный маркетинг', text: 'Все каналы, аналитика и отчёт по стоимости сделки.', href: '/kompleksnyj-marketing/', tag: 'комплексно' },

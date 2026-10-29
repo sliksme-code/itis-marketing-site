@@ -31,6 +31,8 @@
 	redir /case                      /keisy/ 301
 	redir /sitemap.xml               /sitemap-index.xml 301
 	redir /sitemap-feeds.xml         /sitemap-index.xml 301
+	redir /uslugi/reputaciya-i-geo     /uslugi/geo-marketing/ 301
+	redir /uslugi/reputaciya-i-geo/    /uslugi/geo-marketing/ 301
 	redir /bazaznaniy                /blog/ 301
 	# Статьи старой базы знаний → новые адреса в блоге (по одной на статью)
 	redir /bazaznaniy/010623 /blog/medicinskij-kopirajting-kak-sozdat-effektivnyj-tekstovoj-kontent-dlya/ 301

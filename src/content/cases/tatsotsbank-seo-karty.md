@@ -5,7 +5,7 @@ description: "Татсоцбанк — региональный банк Рес�
 client: "Татсоцбанк"
 logo: "/img/logo-tatsotsbank-seo-karty.webp"
 industry: "finansy"
-services: ["seo-prodvizhenie", "reputaciya-i-geo"]
+services: ["seo-prodvizhenie", "geo-marketing"]
 city: "Татарстан"
 period: "[__]"
 metric: "×4"
