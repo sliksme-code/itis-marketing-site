@@ -9,7 +9,19 @@ export const site = {
   phoneHref: 'tel:+78432580445',
   email: 'marat@itis.marketing',
   telegram: 'https://t.me/itismarketing',
-  cities: ['Москва', 'Казань'],
+  cities: ['Москва', 'Казань', 'Санкт-Петербург'],
+  // Головной офис
+  office: {
+    city: 'Казань',
+    street: 'ул. Спартаковская, 2, ИТ-парк им. Башира Рамеева, 2 этаж',
+    postalCode: '420107',
+    region: 'Республика Татарстан',
+  },
+  // Подтверждение прав в Яндекс Вебмастере и Google Search Console (перенесено со старого сайта)
+  yandexVerification: 'e08440f1ec7882e8',
+  googleVerification: 'vw-RCWwjrhJlD51b7lb1pNeNwAapoo9Qbmcr-BcAhGs',
+  // Пиксель VK Рекламы (был на всех страницах старого сайта)
+  vkPixel: 'VK-RTRG-1583081-aITqx',
   founded: 2015,
   // ID счётчика Яндекс Метрики. Пусто — счётчик не подключается.
   metrikaId: '74484220',

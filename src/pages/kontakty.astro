@@ -6,7 +6,7 @@ import LeadForm from '../components/LeadForm.astro';
 import { site } from '../data/site';
 const ld = { '@context': 'https://schema.org', '@type': 'ContactPage', name: 'Контакты itis маркетинг', about: { '@id': `${site.url}/#org` } };
 ---
-<Base title="Контакты itis маркетинг — Москва и Казань" description={`Контакты маркетингового агентства itis: телефон ${site.phone}, Telegram, e-mail ${site.email}. Москва и Казань, работаем по всей России. Ответим в течение часа.`} jsonLd={[ld]}>
+<Base title="Контакты itis маркетинг — Москва, Казань, Санкт-Петербург" description={`Контакты маркетингового агентства itis: телефон ${site.phone}, Telegram, e-mail ${site.email}. Москва, Казань, Санкт-Петербург, работаем по всей России. Ответим в течение часа.`} jsonLd={[ld]}>
   <section class="section stack">
     <Breadcrumbs items={[{ href: '/kontakty/', title: 'Контакты' }]} />
     <h1 class="h1">Контакты</h1>
@@ -18,7 +18,7 @@ const ld = { '@context': 'https://schema.org', '@type': 'ContactPage', name: 'К
     <a class="card card--mist" href={`mailto:${site.email}`} style="padding:36px"><span class="card__num">e-mail</span><h2 class="h2" style="font-size:clamp(22px,2.2vw,30px);overflow-wrap:anywhere">{site.email}</h2><p>Для документов и подробных запросов</p></a>
   </section>
   <section class="section section--mist split">
-    <div class="stack"><h2 class="h2">Москва и Казань</h2><p class="lead">Встречи — в офисе или онлайн по договорённости. Работаем с клиентами по всей России и за рубежом.</p></div>
+    <div class="stack"><h2 class="h2">Москва, Казань, Санкт-Петербург</h2><p class="lead"><b>Головной офис:</b> Казань, {site.office.street}.</p><p>Встречи — в офисе или онлайн по договорённости. Работаем с клиентами по всей России и за рубежом.</p></div>
     <div class="actions" style="align-self:end"><Button href="/legal/" variant="ghost">Реквизиты компании</Button><Button href="#zayavka">Оставить заявку</Button></div>
   </section>
   <LeadForm topic="Контакты" />

@@ -29,6 +29,7 @@ const org = {
   email: site.email,
   foundingDate: String(site.founded),
   areaServed: ['RU', ...site.cities],
+  address: { '@type': 'PostalAddress', streetAddress: site.office.street, addressLocality: site.office.city, addressRegion: site.office.region, postalCode: site.office.postalCode, addressCountry: 'RU' },
   sameAs: [site.telegram],
   knowsAbout: ['SEO-продвижение', 'Контекстная реклама', 'Разработка сайтов', 'Маркетинговые исследования', 'ИИ в маркетинге'],
 };
@@ -50,6 +51,8 @@ const org = {
   <meta property="og:url" content={canonical} />
   <meta property="og:image" content={new URL(ogImage, site.url).href} />
   <meta name="theme-color" content="#263238" />
+  {site.yandexVerification && <meta name="yandex-verification" content={site.yandexVerification} />}
+  {site.googleVerification && <meta name="google-site-verification" content={site.googleVerification} />}
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="sitemap" href="/sitemap-index.xml" />
   <script type="application/ld+json" set:html={JSON.stringify(org)} />
@@ -60,9 +63,15 @@ const org = {
       ym(Number(id),'init',{ssr:true,clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true,ecommerce:'dataLayer'});
     </script>
   )}
+  {site.vkPixel && (
+    <script is:inline define:vars={{ vk: site.vkPixel }}>
+      !function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src="https://vk.com/js/api/openapi.js?169",t.onload=function(){VK.Retargeting.Init(vk),VK.Retargeting.Hit()},document.head.appendChild(t)}();
+    </script>
+  )}
 </head>
 <body>
   {site.metrikaId && <noscript><div><img src={`https://mc.yandex.ru/watch/${site.metrikaId}`} style="position:absolute; left:-9999px;" alt="" /></div></noscript>}
+  {site.vkPixel && <noscript><img src={`https://vk.com/rtrg?p=${site.vkPixel}`} style="position:fixed; left:-999px;" alt="" /></noscript>}
   <a class="skip" href="#main">К содержанию</a>
   <div class="wrap">
     <header class="header">
@@ -109,7 +118,7 @@ const org = {
       </div>
       <div class="footer__bottom">
         <span>© {site.founded}–{new Date().getFullYear()} itis маркетинг · {site.legalName}</span>
-        <span>{site.cities.join(' · ')}</span>
+        <span>{site.cities.join(' · ')} · Головной офис: {site.office.city}, {site.office.street}</span>
       </div>
     </footer>
   </div>
