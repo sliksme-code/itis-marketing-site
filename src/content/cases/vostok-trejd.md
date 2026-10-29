@@ -3,6 +3,7 @@ title: "SEO и контекст для «Восток Трейд»: +30% цел�
 seoTitle: "Кейс: «Восток Трейд» — SEO и контекст, +30% целевого трафика за 5 месяцев"
 description: "Восток Трейд — поставщик навесного оборудования для спецтехники. SEO, контекст и посадочные страницы: +30% целевого трафика и больше качественных обращений."
 client: "Восток Трейд"
+logo: "/img/logo-vostok-trejd.webp"
 industry: "promyshlennost-b2b"
 services: ["seo-prodvizhenie", "kontekstnaya-reklama"]
 city: "Москва"
