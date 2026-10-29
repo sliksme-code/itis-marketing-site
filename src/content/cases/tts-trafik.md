@@ -3,6 +3,7 @@ title: "Digital-аудит и UX для ТТС: трафик сайта авто
 seoTitle: "Кейс: ТТС — удвоили трафик сайта автохолдинга до 1 млн посещений в месяц"
 description: "ТрансТехСервис (ТТС) — один из крупнейших автомобильных холдингов России. Digital- и UX-аудит, новые страницы и фильтры — трафик удвоился до 1 млн посещений в месяц."
 client: "ТрансТехСервис (ТТС)"
+logo: "/img/logo-tts-trafik.webp"
 industry: "avtobiznes"
 services: ["seo-prodvizhenie", "marketingovaya-strategiya"]
 city: "Россия"

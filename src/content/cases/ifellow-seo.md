@@ -3,6 +3,7 @@ title: "SEO для iFellow: +80% органического трафика за 
 seoTitle: "Кейс: SEO для ИТ-интегратора iFellow — +80% органического трафика"
 description: "iFellow — ИТ-интегратор и разработчик цифровых решений для бизнеса. Оптимизация продуктовых страниц ИТ-интегратора: +80% органического трафика."
 client: "iFellow"
+logo: "/img/logo-ifellow-seo.webp"
 industry: "promyshlennost-b2b"
 services: ["seo-prodvizhenie"]
 city: "Россия"

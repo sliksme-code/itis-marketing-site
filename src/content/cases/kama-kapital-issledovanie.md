@@ -3,6 +3,7 @@ title: "Исследование рынка для «Кама Капитал»: 
 seoTitle: "Кейс: исследование рынка офисов для «Кама Капитал» — решение инвесткомитета, сайт и SEO"
 description: "«Кама Капитал» — инвестиционная компания, специализирующаяся на коммерческой недвижимости по всей России, с общей стоимостью активов 71 млрд рублей. Исследование рынка офисов, тайный покупатель, интервью и финмодель"
 client: "«Кама Капитал»"
+logo: "/img/logo-kama-kapital-issledovanie.webp"
 industry: "finansy"
 services: ["marketingovye-issledovaniya", "razrabotka-sajtov", "seo-prodvizhenie", "tehpodderzhka-sajtov"]
 city: "Россия"

@@ -3,6 +3,7 @@ title: "5 лет с Тракресурс-Регион: целевой трафи
 seoTitle: "Кейс: Тракресурс-Регион — сайт, SEO и контекст, целевой трафик ×4 за 5 лет"
 description: "Тракресурс-Регион — один из крупнейших поставщиков складской и дорожно-строительной техники в России. Сайт-каталог, SEO и контекст 5 лет: целевой трафик ×4, бизнес вырос до оборота около 2 млрд ₽."
 client: "Тракресурс-Регион"
+logo: "/img/logo-trakresurs-region.webp"
 industry: "promyshlennost-b2b"
 services: ["razrabotka-sajtov", "seo-prodvizhenie", "kontekstnaya-reklama"]
 city: "Россия"

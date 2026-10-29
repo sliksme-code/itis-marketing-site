@@ -3,6 +3,7 @@ title: "HR-маркетинг для МегаФона: +30% откликов н�
 seoTitle: "Кейс: HR-маркетинг МегаФона — +30% откликов на вакансии в двух федеральных округах"
 description: "МегаФон — один из крупнейших телеком-операторов России. Реклама в VK, Instagram* и Яндексе и HR-портал — +30% откликов в Поволжье и на Урале."
 client: "МегаФон"
+logo: "/img/logo-megafon-hr-marketing.webp"
 industry: "brendy-e-commerce"
 services: ["kontekstnaya-reklama", "razrabotka-sajtov"]
 city: "Поволжье и Урал"

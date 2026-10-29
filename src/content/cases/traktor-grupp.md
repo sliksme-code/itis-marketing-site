@@ -3,6 +3,7 @@ title: "«Трактор Групп»: 30+ целевых заявок в мес
 seoTitle: "Кейс: «Трактор Групп» — посадочные страницы, SEO и реклама, 30+ заявок в месяц"
 description: "Трактор Групп — дистрибьютор оборудования для дорожного строительства. Посадочные страницы, SEO и сезонные кампании — стабильные 30+ целевых заявок в месяц."
 client: "Трактор Групп"
+logo: "/img/logo-traktor-grupp.webp"
 industry: "promyshlennost-b2b"
 services: ["razrabotka-sajtov", "seo-prodvizhenie", "kontekstnaya-reklama"]
 city: "Россия"

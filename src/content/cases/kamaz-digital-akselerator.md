@@ -3,6 +3,7 @@ title: "КАМАЗ Digital: 80 заявок от стартапов для ко�
 seoTitle: "Кейс: КАМАЗ Digital — лендинг и таргет, 80 заявок от стартапов в акселератор"
 description: "КАМАЗ Digital — подразделение КАМАЗа, развивающее цифровые продукты и корпоративные инновации. Лендинг акселератора, таргет и посевы — 80 заявок от стартапов, потребность закрыта полностью."
 client: "КАМАЗ Digital"
+logo: "/img/logo-kamaz-digital-akselerator.webp"
 industry: "promyshlennost-b2b"
 services: ["razrabotka-sajtov", "kontekstnaya-reklama"]
 city: "Набережные Челны"

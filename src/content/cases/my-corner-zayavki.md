@@ -3,6 +3,7 @@ title: "Контекст и Telegram для My Corner: заявки на заг�
 seoTitle: "Кейс: My Corner by Unistroy — заявки на загородную недвижимость выросли в 2,5 раза"
 description: "My Corner by Unistroy — проект загородной недвижимости премиум-класса от одного из крупнейших девелоперов Татарстана. Контекстная реклама и Telegram: количество заявок выросло в 2,5 раза."
 client: "My Corner by Unistroy"
+logo: "/img/logo-my-corner-zayavki.webp"
 industry: "nedvizhimost"
 services: ["kontekstnaya-reklama"]
 city: "Казань"

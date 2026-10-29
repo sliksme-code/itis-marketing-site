@@ -3,6 +3,7 @@ title: "Аудит маркетинга «Суварстроит»: нашли �
 seoTitle: "Кейс: аудит маркетинга и продаж «Суварстроит» — источник 80% заявок"
 description: "Суварстроит — один из крупнейших девелоперов Татарстана, топ-3 по объёму жилья в регионе. Аудит маркетинга, продаж и CRM: нашли канал с 80% заявок и перераспределили бюджет."
 client: "Суварстроит"
+logo: "/img/logo-suvarstroit-audit.webp"
 industry: "nedvizhimost"
 services: ["marketingovaya-strategiya", "marketingovye-issledovaniya"]
 city: "Татарстан"

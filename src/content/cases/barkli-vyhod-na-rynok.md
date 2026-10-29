@@ -3,6 +3,7 @@ title: "Barkli: бренд-платформа и стратегия выхода
 seoTitle: "Кейс: Barkli — исследование рынка, бренд-платформа и стратегия выхода в Казань"
 description: "Barkli — московский девелопер премиальной недвижимости с 30-летней историей и портфелем проектов класса luxury. Анализ рынка Казани, платформа бренда, нейминг, брендбук, книга продаж и PR-стратегия нового ЖК."
 client: "Barkli"
+logo: "/img/logo-barkli-vyhod-na-rynok.webp"
 industry: "nedvizhimost"
 services: ["marketingovye-issledovaniya", "marketingovaya-strategiya"]
 city: "Казань"
