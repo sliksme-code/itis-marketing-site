@@ -276,3 +276,13 @@ a.case:hover .case__title { color: var(--color-accent-text); }
 .btn[disabled] { opacity: .7; cursor: wait; }
 
 .prose img { border-radius: var(--radius-md); margin: 18px 0; width: 100%; height: auto; }
+
+/* Основатель на главной */
+.founder { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 4vw, 56px); align-items: center; }
+.founder__img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 10px; display: block; }
+.founder__stats .stat__value { font-size: clamp(32px, 3vw, 44px); }
+.founder__facts { margin: 0; padding-left: 20px; display: grid; gap: 10px; color: var(--ink-a60); }
+@media (max-width: 900px) { .founder { grid-template-columns: minmax(0, 1fr); } .founder picture { max-width: 420px; } }
+.founder__stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.founder__stats .stat { min-height: 0; padding: 22px; gap: 12px; }
+@media (max-width: 700px) { .founder__stats { grid-template-columns: minmax(0, 1fr); } }

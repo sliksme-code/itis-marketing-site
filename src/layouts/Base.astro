@@ -31,6 +31,14 @@ const org = {
   areaServed: ['RU', ...site.cities],
   address: { '@type': 'PostalAddress', streetAddress: site.office.street, addressLocality: site.office.city, addressRegion: site.office.region, postalCode: site.office.postalCode, addressCountry: 'RU' },
   sameAs: [site.telegram],
+  founder: {
+    '@type': 'Person',
+    name: 'Марат Галиуллин',
+    jobTitle: 'Основатель',
+    image: `${site.url}/img/marat-galiullin.webp`,
+    alumniOf: ['КГФЭИ', 'NEXT MBA Singapore'],
+    worksFor: { '@id': `${site.url}/#org` },
+  },
   knowsAbout: ['SEO-продвижение', 'Контекстная реклама', 'Разработка сайтов', 'Маркетинговые исследования', 'ИИ в маркетинге'],
 };
 ---
