@@ -5,7 +5,7 @@ import CaseCard from '../../components/CaseCard.astro';
 import LeadForm from '../../components/LeadForm.astro';
 import { getCollection } from 'astro:content';
 import { industries } from '../../data/site';
-const cases = (await getCollection('cases')).sort((a, b) => a.data.order - b.data.order);
+const cases = (await getCollection('cases', (c) => !c.data.draft)).sort((a, b) => a.data.order - b.data.order);
 const groups = industries.map((i) => ({ ...i, items: cases.filter((c) => i.href === `/otrasli/${c.data.industry}/`) })).filter((g) => g.items.length);
 // Кейсы из отраслей без отдельной страницы — общей группой
 const known = industries.map((i) => i.href);

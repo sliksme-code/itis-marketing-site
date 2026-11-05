@@ -9,7 +9,7 @@ import LeadForm from '../../components/LeadForm.astro';
 import { getCollection } from 'astro:content';
 import { site } from '../../data/site';
 
-const cases = (await getCollection('cases', (c) => c.data.industry === 'medicina')).sort((a, b) => a.data.order - b.data.order);
+const cases = (await getCollection('cases', (c) => !c.data.draft && c.data.industry === 'medicina')).sort((a, b) => a.data.order - b.data.order);
 
 const faq = [
   { q: 'Вы учитываете ограничения рекламы медицинских услуг?', a: 'Да. Тексты, объявления и страницы врачей готовим с учётом требований к рекламе медицинских услуг: предупреждения о противопоказаниях, корректные формулировки без обещаний излечения, данные лицензии на сайте. Финальные материалы согласуем с медицинским директором клиники.' },
@@ -92,7 +92,7 @@ const service = {
     <div class="grid grid-3">
       {cases.map((c) => <CaseCard href={`/keisy/${c.id}/`} logo={c.data.logo} metric={c.data.metric} title={c.data.client} desc={c.data.summary} tags={[c.data.city]} />)}
     </div>
-    <p class="muted">Также работали с Zen Clinic, Клиникой Курпатова и центром доктора Очеретиной.</p>
+    <p class="muted">Также работали с Zen Clinic и центром доктора Очеретиной.</p>
   </section>
 
   <Stages

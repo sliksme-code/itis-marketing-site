@@ -8,7 +8,7 @@ import { getCollection, render } from 'astro:content';
 import { site, services, industries } from '../../data/site';
 
 export async function getStaticPaths() {
-  const cases = await getCollection('cases');
+  const cases = await getCollection('cases', (c) => !c.data.draft);
   return cases.map((c) => ({ params: { slug: c.id }, props: { entry: c } }));
 }
 const { entry } = Astro.props;
@@ -16,7 +16,7 @@ const d = entry.data;
 const { Content } = await render(entry);
 const ind = industries.find((i) => i.href === `/otrasli/${d.industry}/`);
 const used = services.filter((s) => d.services.some((x) => s.href === `/uslugi/${x}/`));
-const related = (await getCollection('cases', (c) => c.id !== entry.id && c.data.industry === d.industry)).slice(0, 3);
+const related = (await getCollection('cases', (c) => !c.data.draft && c.id !== entry.id && c.data.industry === d.industry)).slice(0, 3);
 const ld = {
   '@context': 'https://schema.org', '@type': 'Article',
   headline: d.title, description: d.description,

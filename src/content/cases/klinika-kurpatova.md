@@ -14,7 +14,7 @@ summary: "SEO, гео-продвижение и контекстная рекл�
 results:
   - { value: "+60%", label: "новых обращений в клинику" }
   - { value: "3", label: "канала в одной связке: SEO, карты, контекст" }
-draft: false
+draft: true
 order: 23
 ---
 

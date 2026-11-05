@@ -21,11 +21,11 @@ const crumbs = d.section === 'product'
   ? [{ href: path, title: d.serviceName }]
   : [{ href: `/${d.section}/`, title: d.section === 'uslugi' ? 'Услуги' : 'Отрасли' }, { href: path, title: d.serviceName }];
 
-const cases = (await getCollection('cases', (c) =>
+const cases = (await getCollection('cases', (c) => !c.data.draft && (
   (d.cases.ids ? d.cases.ids.includes(c.id) : false) ||
   (d.cases.industry ? c.data.industry === d.cases.industry : false) ||
   (d.cases.service ? c.data.services.includes(d.cases.service) : false)
-)).sort((a, b) => Number(a.data.draft) - Number(b.data.draft) || a.data.order - b.data.order).slice(0, 6);
+))).sort((a, b) => Number(a.data.draft) - Number(b.data.draft) || a.data.order - b.data.order).slice(0, 6);
 
 const ld = {
   '@context': 'https://schema.org', '@type': 'Service',
