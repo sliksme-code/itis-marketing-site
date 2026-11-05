@@ -3,6 +3,7 @@ title: "Клиника Курпатова: комплексный маркети
 seoTitle: "Кейс: маркетинг Клиники Курпатова — SEO, гео-продвижение и контекст, +60% новых обращений"
 description: "Комплексный маркетинг для Клиники Курпатова: SEO, гео-продвижение и контекстная реклама в одной связке — новых обращений стало на 60% больше."
 client: "Клиника Курпатова"
+logo: "/img/logo-klinika-kurpatova.webp"
 industry: "medicina"
 services: ["kompleksnyj-marketing", "seo-prodvizhenie", "geo-marketing", "kontekstnaya-reklama"]
 city: "SEO · карты · контекст"

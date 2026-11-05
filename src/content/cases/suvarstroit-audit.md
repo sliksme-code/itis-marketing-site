@@ -5,9 +5,9 @@ description: "Суварстроит — один из крупнейших де
 client: "Суварстроит"
 logo: "/img/logo-suvarstroit-audit.webp"
 industry: "nedvizhimost"
-services: ["marketingovaya-strategiya", "marketingovye-issledovaniya"]
+services: ["marketingovyj-konsalting", "marketingovaya-strategiya", "marketingovye-issledovaniya"]
 city: "Татарстан"
-period: "[__]"
+period: "2024"
 metric: "80%"
 metricLabel: "заявок давал канал без приоритетного финансирования"
 summary: "Аудит маркетинга, продаж и CRM: нашли канал с 80% заявок и перераспределили бюджет."

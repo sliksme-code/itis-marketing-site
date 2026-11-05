@@ -3,6 +3,7 @@ title: "Сеть барбершопов Portos: комплексный марк�
 seoTitle: "Кейс: маркетинг сети барбершопов Portos — от 1 до 4 филиалов, до 200 клиентов в месяц"
 description: "Комплексный маркетинг сети барбершопов Portos: росли вместе с сетью с одного филиала до четырёх, ежемесячно приводим до 200 новых клиентов, автоматизировали запись и продвигаем сайт."
 client: "Сеть барбершопов Portos"
+logo: "/img/logo-portos-barbershopy.webp"
 industry: "servis"
 services: ["kompleksnyj-marketing", "seo-prodvizhenie", "geo-marketing"]
 city: "4 филиала"
