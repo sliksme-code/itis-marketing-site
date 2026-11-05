@@ -37,6 +37,7 @@ const ld = {
   ...(d.priceFrom ? { offers: { '@type': 'Offer', priceCurrency: 'RUB', price: String(d.priceFrom), description: d.pricePill } } : {}),
 };
 const tones = ['section--coral', 'card--ink', 'card--mist'];
+const sceneH: Record<string, number> = { ai: 437, complex: 366, seo: 495, ads: 376, site: 458, research: 408, calls: 478 };
 ---
 <Base title={d.seoTitle} description={d.description} jsonLd={[ld]}>
   <section class="section stack">
@@ -51,6 +52,9 @@ const tones = ['section--coral', 'card--ink', 'card--mist'];
           {d.pricePill && <span class="pill pill--dot">{d.pricePill}</span>}
         </div>
       </div>
+      {d.heroScene ? (
+        <img class="hero-scene" src={`/img/scenes/${d.heroScene}.svg`} alt={`Иллюстрация: ${d.serviceName}`} width="524" height={sceneH[d.heroScene] ?? 420} fetchpriority="high" />
+      ) : (
       <div class="grid grid-2" style="align-content:start">
         {d.heroStats.map((s, i) => (
           <div class:list={['stat', tones[i % 3]]} style={d.heroStats.length === 3 && i === 2 ? 'grid-column:1/-1;min-height:160px' : undefined}>
@@ -59,7 +63,16 @@ const tones = ['section--coral', 'card--ink', 'card--mist'];
         ))}
         {d.heroNote && <div class="stat card--mist" style="grid-column:1/-1;min-height:auto"><span class="stat__label">{d.heroNote}</span></div>}
       </div>
+      )}
     </div>
+    {d.heroScene && (
+      <div class="hero-stats">
+        {d.heroStats.map((s, i) => (
+          <div class:list={['stat', tones[i % 3]]}><span class="stat__value">{s.value}</span><span class="stat__label">{s.label}</span></div>
+        ))}
+        {d.heroNote && <div class="stat card--mist hero-stats__note"><span class="stat__label">{d.heroNote}</span></div>}
+      </div>
+    )}
   </section>
 
   {d.illustrations && (
